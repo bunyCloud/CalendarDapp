@@ -1,0 +1,717 @@
+{
+  "address": "0x1Aa6bdFe249e17A9B5c1D120C76314D17582ca23",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "eventID",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "organizer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "endTime",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "metadataURI",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "EventUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "eventID",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "attendee",
+          "type": "address"
+        }
+      ],
+      "name": "InvitationAccepted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "organizer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "endTime",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "metadataURI",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "NewEventCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "eventID",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "invitedUser",
+          "type": "address"
+        }
+      ],
+      "name": "UserInvited",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "eventID",
+          "type": "uint256"
+        }
+      ],
+      "name": "acceptInvitation",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "calendarName",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "endTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "metadataURI",
+          "type": "string"
+        },
+        {
+          "internalType": "address[]",
+          "name": "invitees",
+          "type": "address[]"
+        }
+      ],
+      "name": "createTelosCalendarEvent",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "eventCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "eventCreators",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "eventInvitations",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAllUsersEvents",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "title",
+                  "type": "string"
+                },
+                {
+                  "internalType": "address",
+                  "name": "organizer",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "startTime",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "endTime",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "created",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "metadataURI",
+                  "type": "string"
+                },
+                {
+                  "internalType": "address[]",
+                  "name": "invitedAttendees",
+                  "type": "address[]"
+                },
+                {
+                  "internalType": "address[]",
+                  "name": "confirmedAttendees",
+                  "type": "address[]"
+                }
+              ],
+              "internalType": "struct CalendarOne.CalendarEvent[]",
+              "name": "events",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct CalendarOne.AllEvents[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getUserEvents",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "title",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "organizer",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "startTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "endTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "created",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "metadataURI",
+              "type": "string"
+            },
+            {
+              "internalType": "address[]",
+              "name": "invitedAttendees",
+              "type": "address[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "confirmedAttendees",
+              "type": "address[]"
+            }
+          ],
+          "internalType": "struct CalendarOne.CalendarEvent[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalEvents",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "eventID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "endTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "metadataURI",
+          "type": "string"
+        }
+      ],
+      "name": "updateEvent",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "userEvents",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "organizer",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "endTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "created",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "metadataURI",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "users",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xad0c32e50d5f8f45a0cf6b396a36784e844d74ea2503666c77fbd56f374e81cb",
+  "receipt": {
+    "to": null,
+    "from": "0x8406A51A0E1B5F52Ff61226773e6328e5Da5d964",
+    "contractAddress": "0x1Aa6bdFe249e17A9B5c1D120C76314D17582ca23",
+    "transactionIndex": 0,
+    "gasUsed": "1415493",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x4d5606c8acec8a45559624acde6357717784f13d4b02eec8f8ea67fc00294791",
+    "transactionHash": "0xad0c32e50d5f8f45a0cf6b396a36784e844d74ea2503666c77fbd56f374e81cb",
+    "logs": [],
+    "blockNumber": 241203888,
+    "cumulativeGasUsed": "1415493",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "4301cf60fbe1b23485db7c72389d82a5",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"eventID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"organizer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"metadataURI\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"EventUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"eventID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"attendee\",\"type\":\"address\"}],\"name\":\"InvitationAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"organizer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"metadataURI\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"NewEventCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"eventID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"invitedUser\",\"type\":\"address\"}],\"name\":\"UserInvited\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"eventID\",\"type\":\"uint256\"}],\"name\":\"acceptInvitation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"calendarName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"metadataURI\",\"type\":\"string\"},{\"internalType\":\"address[]\",\"name\":\"invitees\",\"type\":\"address[]\"}],\"name\":\"createTelosCalendarEvent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"eventCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"eventCreators\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"eventInvitations\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllUsersEvents\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"organizer\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"created\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"metadataURI\",\"type\":\"string\"},{\"internalType\":\"address[]\",\"name\":\"invitedAttendees\",\"type\":\"address[]\"},{\"internalType\":\"address[]\",\"name\":\"confirmedAttendees\",\"type\":\"address[]\"}],\"internalType\":\"struct CalendarOne.CalendarEvent[]\",\"name\":\"events\",\"type\":\"tuple[]\"}],\"internalType\":\"struct CalendarOne.AllEvents[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getUserEvents\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"organizer\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"created\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"metadataURI\",\"type\":\"string\"},{\"internalType\":\"address[]\",\"name\":\"invitedAttendees\",\"type\":\"address[]\"},{\"internalType\":\"address[]\",\"name\":\"confirmedAttendees\",\"type\":\"address[]\"}],\"internalType\":\"struct CalendarOne.CalendarEvent[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalEvents\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"eventID\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"metadataURI\",\"type\":\"string\"}],\"name\":\"updateEvent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"userEvents\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"organizer\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"created\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"metadataURI\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"users\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/CalendarOne.sol\":\"CalendarOne\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/CalendarOne.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.0;\\r\\n\\r\\ncontract CalendarOne {\\r\\n    \\r\\n    struct CalendarEvent {\\r\\n        string title;     // title of event\\r\\n        address organizer; // event organizer's address\\r\\n        uint startTime;   // start time ie. 1687393537 Thu Jun 22 2023 00:25:37\\r\\n        uint endTime;     // end time ie. 1687739137 Mon Jun 26 2023 00:25:37\\r\\n        uint created; //  event created date time\\r\\n        string metadataURI; // IPFS metadata or JSON file URL\\r\\n        address[] invitedAttendees; // array of invited addresses\\r\\n        address[] confirmedAttendees; // array of confirmed addresses\\r\\n    }\\r\\n\\r\\n    // Define all events by all users\\r\\n    struct AllEvents {\\r\\n        address user; // event creator address\\r\\n        CalendarEvent[] events; // array of all events created\\r\\n    }\\r\\n\\r\\n    string public calendarName = \\\"Calendar One\\\";\\r\\n    mapping(address => CalendarEvent[]) public userEvents;\\r\\n    address[] public users; // Array to keep track of all users\\r\\n    address[] public eventCreators; // Array to keep track of all event creators\\r\\n    mapping(address => uint) public eventCount; // Mapping to keep track of the number of events per user\\r\\n    mapping(uint => address[]) public eventInvitations; // Mapping of event ID to invited users\\r\\n    uint public totalEvents; // Count of all events created\\r\\n\\r\\n    event NewEventCreated(string title, address organizer, uint startTime, uint endTime, string metadataURI, uint timestamp);\\r\\n    event EventUpdated(uint eventID, string title, address organizer, uint startTime, uint endTime, string metadataURI, uint timestamp);\\r\\n    event UserInvited(uint eventID, string title,  address invitedUser);\\r\\n    event InvitationAccepted(uint eventID, address attendee);\\r\\n\\r\\n    function createTelosCalendarEvent(string memory title, uint startTime, uint endTime, string memory metadataURI, address[] memory invitees) public {\\r\\n        CalendarEvent memory newEvent;\\r\\n        newEvent.title = title; // title of event\\r\\n        newEvent.startTime = startTime; // unix start time ie. 1687398249 =  Thu Jun 22 2023 01:44:09\\r\\n        newEvent.endTime = endTime; // unix end time ie. 1687743849 = Mon Jun 26 2023 01:44:09\\r\\n        newEvent.organizer = msg.sender;  // account address \\r\\n        newEvent.created = block.timestamp; // created timestamp\\r\\n        newEvent.metadataURI = metadataURI; // metadata URI ie. IPFS cid or URL to JSON file\\r\\n        newEvent.invitedAttendees = invitees; // account addresses invited to event\\r\\n        // Adding the event to the organizer's list of events\\r\\n        userEvents[msg.sender].push(newEvent); // push data to struct\\r\\n        uint eventID = userEvents[msg.sender].length - 1; // assign ID to each event\\r\\n        totalEvents++; // Increment total event count\\r\\n        // Adding user to the users list\\r\\n        if (userEvents[msg.sender].length == 1) { // this means it's the user's first event\\r\\n            users.push(msg.sender);\\r\\n            eventCreators.push(msg.sender); // Add the creator to the list of event creators\\r\\n        }\\r\\n        eventCount[msg.sender]++; // Update the count of events for the creator\\r\\n        // Invite users to the event\\r\\n        for (uint i = 0; i < invitees.length; i++) {\\r\\n            eventInvitations[eventID].push(invitees[i]); // push invitees to struct\\r\\n            emit UserInvited(eventID, title, invitees[i]);\\r\\n        }\\r\\n\\r\\n        emit NewEventCreated(title, msg.sender, startTime, endTime, metadataURI, block.timestamp);\\r\\n    }\\r\\n\\r\\n   function acceptInvitation(uint eventID) public {\\r\\n    // Ensure we have an address for this event ID\\r\\n    require(eventID < eventCreators.length, \\\"Invalid event ID\\\");\\r\\n    address eventCreator = eventCreators[eventID];\\r\\n    CalendarEvent[] storage events = userEvents[eventCreator];\\r\\n    // Ensure the event exists for this user\\r\\n    require(eventID < events.length, \\\"Invalid event ID for this user\\\");\\r\\n    // Check if user is invited\\r\\n    bool isInvited = false;\\r\\n    for (uint i = 0; i < events[eventID].invitedAttendees.length; i++) {\\r\\n        if (events[eventID].invitedAttendees[i] == msg.sender) {\\r\\n            isInvited = true;\\r\\n            break;\\r\\n        }\\r\\n    }\\r\\n    require(isInvited, \\\"You are not invited to this event\\\");\\r\\n    // add the address to the confirmed attendees list\\r\\n    events[eventID].confirmedAttendees.push(msg.sender);\\r\\n    emit InvitationAccepted(eventID, msg.sender);\\r\\n}\\r\\n\\r\\n\\r\\n  function updateEvent(uint eventID, string memory title, uint startTime, uint endTime, string memory metadataURI) public {\\r\\n        // Check that the eventID is valid for the user\\r\\n        require(eventID < userEvents[msg.sender].length, \\\"Invalid event ID\\\");\\r\\n        // Update the event\\r\\n        CalendarEvent storage eventToUpdate = userEvents[msg.sender][eventID];\\r\\n        eventToUpdate.title = title; // title to update\\r\\n        eventToUpdate.startTime = startTime; // update start time\\r\\n        eventToUpdate.endTime = endTime;\\r\\n        eventToUpdate.metadataURI = metadataURI; // change metadata url\\r\\n        emit EventUpdated(eventID, title, msg.sender, startTime, endTime, metadataURI, block.timestamp);\\r\\n    }\\r\\n\\r\\n    // Fetch user calendar events\\r\\n    function getUserEvents(address user) public view returns (CalendarEvent[] memory) {\\r\\n        return userEvents[user];\\r\\n    }\\r\\n\\r\\n    // Fetch all users' events\\r\\n    function getAllUsersEvents() public view returns (AllEvents[] memory) {\\r\\n        AllEvents[] memory allUsersEvents = new AllEvents[](users.length);\\r\\n\\r\\n        for (uint i = 0; i < users.length; i++) {\\r\\n            allUsersEvents[i] = AllEvents({\\r\\n                user: users[i],\\r\\n                events: getUserEvents(users[i])\\r\\n            });\\r\\n        }\\r\\n\\r\\n        return allUsersEvents;\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x083be10759bd1f43f3e9c37b160f369f7d5b1abb4ed38d4be6258dd79dfb0fc6\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60c0604052600c60809081526b43616c656e646172204f6e6560a01b60a0526000906200002d9082620000e7565b503480156200003b57600080fd5b50620001b3565b634e487b7160e01b600052604160045260246000fd5b600181811c908216806200006d57607f821691505b6020821081036200008e57634e487b7160e01b600052602260045260246000fd5b50919050565b601f821115620000e257600081815260208120601f850160051c81016020861015620000bd5750805b601f850160051c820191505b81811015620000de57828155600101620000c9565b5050505b505050565b81516001600160401b0381111562000103576200010362000042565b6200011b8162000114845462000058565b8462000094565b602080601f8311600181146200015357600084156200013a5750858301515b600019600386901b1c1916600185901b178555620000de565b600085815260208120601f198616915b82811015620001845788860151825594840194600190910190840162000163565b5085821015620001a35787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b61182080620001c36000396000f3fe608060405234801561001057600080fd5b50600436106100b45760003560e01c80637d0da00f116100715780637d0da00f146101765780638c5f24081461018b57806395fa6c50146101a0578063ba870686146101b3578063bdfc9893146101bc578063ef7e1f68146101e157600080fd5b8063171e5ba2146100b9578063365b98b2146100e2578063455f20dc1461010d578063464c5b6c1461013b5780636dc4c2af14610150578063783a697914610163575b600080fd5b6100cc6100c7366004610f6e565b6101f4565b6040516100d9919061101a565b60405180910390f35b6100f56100f0366004611112565b610487565b6040516001600160a01b0390911681526020016100d9565b61012d61011b366004610f6e565b60046020526000908152604090205481565b6040519081526020016100d9565b61014e610149366004611112565b6104b1565b005b61014e61015e3660046111e2565b61071e565b61014e610171366004611263565b610816565b61017e610b60565b6040516100d9919061136b565b610193610c8a565b6040516100d991906114b0565b6100f56101ae366004611112565b610d18565b61012d60065481565b6101cf6101ca3660046114c3565b610d28565b6040516100d9969594939291906114ed565b6100f56101ef366004611543565b610ea0565b6001600160a01b0381166000908152600160209081526040808320805482518185028101850190935280835260609492939192909184015b8282101561047c57838290600052602060002090600802016040518061010001604052908160008201805461026090611565565b80601f016020809104026020016040519081016040528092919081815260200182805461028c90611565565b80156102d95780601f106102ae576101008083540402835291602001916102d9565b820191906000526020600020905b8154815290600101906020018083116102bc57829003601f168201915b505050918352505060018201546001600160a01b0316602082015260028201546040820152600382015460608201526004820154608082015260058201805460a09092019161032790611565565b80601f016020809104026020016040519081016040528092919081815260200182805461035390611565565b80156103a05780601f10610375576101008083540402835291602001916103a0565b820191906000526020600020905b81548152906001019060200180831161038357829003601f168201915b505050505081526020016006820180548060200260200160405190810160405280929190818152602001828054801561040257602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116103e4575b505050505081526020016007820180548060200260200160405190810160405280929190818152602001828054801561046457602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610446575b5050505050815250508152602001906001019061022c565b505050509050919050565b6002818154811061049757600080fd5b6000918252602090912001546001600160a01b0316905081565b60035481106104fa5760405162461bcd60e51b815260206004820152601060248201526f125b9d985b1a5908195d995b9d08125160821b60448201526064015b60405180910390fd5b60006003828154811061050f5761050f611599565b60009182526020808320909101546001600160a01b03168083526001909152604090912080549192509083106105875760405162461bcd60e51b815260206004820152601e60248201527f496e76616c6964206576656e7420494420666f7220746869732075736572000060448201526064016104f1565b6000805b82858154811061059d5761059d611599565b90600052602060002090600802016006018054905081101561062c57336001600160a01b03168386815481106105d5576105d5611599565b906000526020600020906008020160060182815481106105f7576105f7611599565b6000918252602090912001546001600160a01b03160361061a576001915061062c565b80610624816115c5565b91505061058b565b50806106845760405162461bcd60e51b815260206004820152602160248201527f596f7520617265206e6f7420696e766974656420746f2074686973206576656e6044820152601d60fa1b60648201526084016104f1565b81848154811061069657610696611599565b60009182526020808320600760089093020191909101805460018101825590835291200180546001600160a01b031916339081179091556040517f3d7c4cad0e306b726e83345c42fc0d920259e72cdf2dc9b1a8f98d246540363491610710918791909182526001600160a01b0316602082015260400190565b60405180910390a150505050565b33600090815260016020526040902054851061076f5760405162461bcd60e51b815260206004820152601060248201526f125b9d985b1a5908195d995b9d08125160821b60448201526064016104f1565b33600090815260016020526040812080548790811061079057610790611599565b600091825260209091206008909102019050806107ad868261162d565b506002810184905560038101839055600581016107ca838261162d565b507f71bbeb2ea5afee5184d7de266ec09583703adc8d55ab5e5d5ef0f004d383ea9a8686338787874260405161080697969594939291906116ed565b60405180910390a1505050505050565b6108676040518061010001604052806060815260200160006001600160a01b031681526020016000815260200160008152602001600081526020016060815260200160608152602001606081525090565b85815260408082018690526060820185905233602080840182905242608085015260a0840186905260c08401859052600091825260018082529282208054938401815582529020825183926008029091019081906108c5908261162d565b5060208201516001820180546001600160a01b0319166001600160a01b0390921691909117905560408201516002820155606082015160038201556080820151600482015560a0820151600582019061091e908261162d565b5060c0820151805161093a916006840191602090910190610ed8565b5060e08201518051610956916007840191602090910190610ed8565b50503360009081526001602081905260408220549192506109769161174a565b600680549192506000610988836115c5565b9091555050336000908152600160208190526040909120549003610a21576002805460018082019092557f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace018054336001600160a01b031991821681179092556003805493840181556000527fc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b90920180549092161790555b336000908152600460205260408120805491610a3c836115c5565b919050555060005b8351811015610b155760008281526005602052604090208451859083908110610a6f57610a6f611599565b60209081029190910181015182546001810184556000938452919092200180546001600160a01b0319166001600160a01b0390921691909117905583517fd48873c66feece7bbf3cbcd8d14102600b7da47eac54823e0441effd7da44c5e9083908a90879085908110610ae457610ae4611599565b6020026020010151604051610afb93929190611763565b60405180910390a180610b0d816115c5565b915050610a44565b507f5de78a9ae4c001e59c842d545242d8a786775b83ea20661569877156e6ec641d873388888842604051610b4f96959493929190611794565b60405180910390a150505050505050565b60025460609060009067ffffffffffffffff811115610b8157610b8161112b565b604051908082528060200260200182016040528015610bc757816020015b604080518082019091526000815260606020820152815260200190600190039081610b9f5790505b50905060005b600254811015610c8457604051806040016040528060028381548110610bf557610bf5611599565b9060005260206000200160009054906101000a90046001600160a01b03166001600160a01b03168152602001610c5160028481548110610c3757610c37611599565b6000918252602090912001546001600160a01b03166101f4565b815250828281518110610c6657610c66611599565b60200260200101819052508080610c7c906115c5565b915050610bcd565b50919050565b60008054610c9790611565565b80601f0160208091040260200160405190810160405280929190818152602001828054610cc390611565565b8015610d105780601f10610ce557610100808354040283529160200191610d10565b820191906000526020600020905b815481529060010190602001808311610cf357829003601f168201915b505050505081565b6003818154811061049757600080fd5b60016020528160005260406000208181548110610d4457600080fd5b906000526020600020906008020160009150915050806000018054610d6890611565565b80601f0160208091040260200160405190810160405280929190818152602001828054610d9490611565565b8015610de15780601f10610db657610100808354040283529160200191610de1565b820191906000526020600020905b815481529060010190602001808311610dc457829003601f168201915b505050600184015460028501546003860154600487015460058801805497986001600160a01b03909516979396509194509291610e1d90611565565b80601f0160208091040260200160405190810160405280929190818152602001828054610e4990611565565b8015610e965780601f10610e6b57610100808354040283529160200191610e96565b820191906000526020600020905b815481529060010190602001808311610e7957829003601f168201915b5050505050905086565b60056020528160005260406000208181548110610ebc57600080fd5b6000918252602090912001546001600160a01b03169150829050565b828054828255906000526020600020908101928215610f2d579160200282015b82811115610f2d57825182546001600160a01b0319166001600160a01b03909116178255602090920191600190910190610ef8565b50610f39929150610f3d565b5090565b5b80821115610f395760008155600101610f3e565b80356001600160a01b0381168114610f6957600080fd5b919050565b600060208284031215610f8057600080fd5b610f8982610f52565b9392505050565b6000815180845260005b81811015610fb657602081850181015186830182015201610f9a565b506000602082860101526020601f19601f83011685010191505092915050565b600081518084526020808501945080840160005b8381101561100f5781516001600160a01b031687529582019590820190600101610fea565b509495945050505050565b60006020808301818452808551808352604092508286019150828160051b87010184880160005b8381101561110457603f198984030185528151610100815181865261106882870182610f90565b915050888201516110838a8701826001600160a01b03169052565b508188015185890152606080830151908601526080808301519086015260a080830151868303828801526110b78382610f90565b9250505060c080830151868303828801526110d28382610fd6565b9250505060e080830151925085820381870152506110f08183610fd6565b968901969450505090860190600101611041565b509098975050505050505050565b60006020828403121561112457600080fd5b5035919050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff8111828210171561116a5761116a61112b565b604052919050565b600082601f83011261118357600080fd5b813567ffffffffffffffff81111561119d5761119d61112b565b6111b0601f8201601f1916602001611141565b8181528460208386010111156111c557600080fd5b816020850160208301376000918101602001919091529392505050565b600080600080600060a086880312156111fa57600080fd5b85359450602086013567ffffffffffffffff8082111561121957600080fd5b61122589838a01611172565b95506040880135945060608801359350608088013591508082111561124957600080fd5b5061125688828901611172565b9150509295509295909350565b600080600080600060a0868803121561127b57600080fd5b853567ffffffffffffffff8082111561129357600080fd5b61129f89838a01611172565b965060209150818801359550604088013594506060880135818111156112c457600080fd5b6112d08a828b01611172565b9450506080880135818111156112e557600080fd5b8801601f81018a136112f657600080fd5b8035828111156113085761130861112b565b8060051b9250611319848401611141565b818152928201840192848101908c85111561133357600080fd5b928501925b848410156113585761134984610f52565b82529285019290850190611338565b8096505050505050509295509295909350565b60006020808301818452808551808352604092508286019150828160051b87010184880160005b8381101561110457603f19898403018552815180516001600160a01b031684528701518784018790528051878501819052908801906060600582901b86018101919086019060005b8181101561149a57605f198885030183528451610100815181875261140182880182610f90565b9150508d82015161141c8f8801826001600160a01b03169052565b508c8201518d870152606082015160608701526080820151608087015260a082015186820360a08801526114508282610f90565b91505060c082015186820360c088015261146a8282610fd6565b91505060e0820151915085810360e08701526114868183610fd6565b968e019695505050918b01916001016113da565b5050509588019593505090860190600101611392565b602081526000610f896020830184610f90565b600080604083850312156114d657600080fd5b6114df83610f52565b946020939093013593505050565b60c08152600061150060c0830189610f90565b6001600160a01b038816602084015260408301879052606083018690526080830185905282810360a08401526115368185610f90565b9998505050505050505050565b6000806040838503121561155657600080fd5b50508035926020909101359150565b600181811c9082168061157957607f821691505b602082108103610c8457634e487b7160e01b600052602260045260246000fd5b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052601160045260246000fd5b6000600182016115d7576115d76115af565b5060010190565b601f82111561162857600081815260208120601f850160051c810160208610156116055750805b601f850160051c820191505b8181101561162457828155600101611611565b5050505b505050565b815167ffffffffffffffff8111156116475761164761112b565b61165b816116558454611565565b846115de565b602080601f83116001811461169057600084156116785750858301515b600019600386901b1c1916600185901b178555611624565b600085815260208120601f198616915b828110156116bf578886015182559484019460019091019084016116a0565b50858210156116dd5787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b87815260e06020820152600061170660e0830189610f90565b6001600160a01b0388166040840152606083018790526080830186905282810360a08401526117358186610f90565b9150508260c083015298975050505050505050565b8181038181111561175d5761175d6115af565b92915050565b83815260606020820152600061177c6060830185610f90565b905060018060a01b0383166040830152949350505050565b60c0815260006117a760c0830189610f90565b6001600160a01b0388166020840152604083018790526060830186905282810360808401526117d68186610f90565b9150508260a083015297965050505050505056fea2646970667358221220a781c49506cbddad437dd26755a0e7226f6df93c2206bfad337bdc54e85dab2b64736f6c63430008130033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100b45760003560e01c80637d0da00f116100715780637d0da00f146101765780638c5f24081461018b57806395fa6c50146101a0578063ba870686146101b3578063bdfc9893146101bc578063ef7e1f68146101e157600080fd5b8063171e5ba2146100b9578063365b98b2146100e2578063455f20dc1461010d578063464c5b6c1461013b5780636dc4c2af14610150578063783a697914610163575b600080fd5b6100cc6100c7366004610f6e565b6101f4565b6040516100d9919061101a565b60405180910390f35b6100f56100f0366004611112565b610487565b6040516001600160a01b0390911681526020016100d9565b61012d61011b366004610f6e565b60046020526000908152604090205481565b6040519081526020016100d9565b61014e610149366004611112565b6104b1565b005b61014e61015e3660046111e2565b61071e565b61014e610171366004611263565b610816565b61017e610b60565b6040516100d9919061136b565b610193610c8a565b6040516100d991906114b0565b6100f56101ae366004611112565b610d18565b61012d60065481565b6101cf6101ca3660046114c3565b610d28565b6040516100d9969594939291906114ed565b6100f56101ef366004611543565b610ea0565b6001600160a01b0381166000908152600160209081526040808320805482518185028101850190935280835260609492939192909184015b8282101561047c57838290600052602060002090600802016040518061010001604052908160008201805461026090611565565b80601f016020809104026020016040519081016040528092919081815260200182805461028c90611565565b80156102d95780601f106102ae576101008083540402835291602001916102d9565b820191906000526020600020905b8154815290600101906020018083116102bc57829003601f168201915b505050918352505060018201546001600160a01b0316602082015260028201546040820152600382015460608201526004820154608082015260058201805460a09092019161032790611565565b80601f016020809104026020016040519081016040528092919081815260200182805461035390611565565b80156103a05780601f10610375576101008083540402835291602001916103a0565b820191906000526020600020905b81548152906001019060200180831161038357829003601f168201915b505050505081526020016006820180548060200260200160405190810160405280929190818152602001828054801561040257602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116103e4575b505050505081526020016007820180548060200260200160405190810160405280929190818152602001828054801561046457602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610446575b5050505050815250508152602001906001019061022c565b505050509050919050565b6002818154811061049757600080fd5b6000918252602090912001546001600160a01b0316905081565b60035481106104fa5760405162461bcd60e51b815260206004820152601060248201526f125b9d985b1a5908195d995b9d08125160821b60448201526064015b60405180910390fd5b60006003828154811061050f5761050f611599565b60009182526020808320909101546001600160a01b03168083526001909152604090912080549192509083106105875760405162461bcd60e51b815260206004820152601e60248201527f496e76616c6964206576656e7420494420666f7220746869732075736572000060448201526064016104f1565b6000805b82858154811061059d5761059d611599565b90600052602060002090600802016006018054905081101561062c57336001600160a01b03168386815481106105d5576105d5611599565b906000526020600020906008020160060182815481106105f7576105f7611599565b6000918252602090912001546001600160a01b03160361061a576001915061062c565b80610624816115c5565b91505061058b565b50806106845760405162461bcd60e51b815260206004820152602160248201527f596f7520617265206e6f7420696e766974656420746f2074686973206576656e6044820152601d60fa1b60648201526084016104f1565b81848154811061069657610696611599565b60009182526020808320600760089093020191909101805460018101825590835291200180546001600160a01b031916339081179091556040517f3d7c4cad0e306b726e83345c42fc0d920259e72cdf2dc9b1a8f98d246540363491610710918791909182526001600160a01b0316602082015260400190565b60405180910390a150505050565b33600090815260016020526040902054851061076f5760405162461bcd60e51b815260206004820152601060248201526f125b9d985b1a5908195d995b9d08125160821b60448201526064016104f1565b33600090815260016020526040812080548790811061079057610790611599565b600091825260209091206008909102019050806107ad868261162d565b506002810184905560038101839055600581016107ca838261162d565b507f71bbeb2ea5afee5184d7de266ec09583703adc8d55ab5e5d5ef0f004d383ea9a8686338787874260405161080697969594939291906116ed565b60405180910390a1505050505050565b6108676040518061010001604052806060815260200160006001600160a01b031681526020016000815260200160008152602001600081526020016060815260200160608152602001606081525090565b85815260408082018690526060820185905233602080840182905242608085015260a0840186905260c08401859052600091825260018082529282208054938401815582529020825183926008029091019081906108c5908261162d565b5060208201516001820180546001600160a01b0319166001600160a01b0390921691909117905560408201516002820155606082015160038201556080820151600482015560a0820151600582019061091e908261162d565b5060c0820151805161093a916006840191602090910190610ed8565b5060e08201518051610956916007840191602090910190610ed8565b50503360009081526001602081905260408220549192506109769161174a565b600680549192506000610988836115c5565b9091555050336000908152600160208190526040909120549003610a21576002805460018082019092557f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace018054336001600160a01b031991821681179092556003805493840181556000527fc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b90920180549092161790555b336000908152600460205260408120805491610a3c836115c5565b919050555060005b8351811015610b155760008281526005602052604090208451859083908110610a6f57610a6f611599565b60209081029190910181015182546001810184556000938452919092200180546001600160a01b0319166001600160a01b0390921691909117905583517fd48873c66feece7bbf3cbcd8d14102600b7da47eac54823e0441effd7da44c5e9083908a90879085908110610ae457610ae4611599565b6020026020010151604051610afb93929190611763565b60405180910390a180610b0d816115c5565b915050610a44565b507f5de78a9ae4c001e59c842d545242d8a786775b83ea20661569877156e6ec641d873388888842604051610b4f96959493929190611794565b60405180910390a150505050505050565b60025460609060009067ffffffffffffffff811115610b8157610b8161112b565b604051908082528060200260200182016040528015610bc757816020015b604080518082019091526000815260606020820152815260200190600190039081610b9f5790505b50905060005b600254811015610c8457604051806040016040528060028381548110610bf557610bf5611599565b9060005260206000200160009054906101000a90046001600160a01b03166001600160a01b03168152602001610c5160028481548110610c3757610c37611599565b6000918252602090912001546001600160a01b03166101f4565b815250828281518110610c6657610c66611599565b60200260200101819052508080610c7c906115c5565b915050610bcd565b50919050565b60008054610c9790611565565b80601f0160208091040260200160405190810160405280929190818152602001828054610cc390611565565b8015610d105780601f10610ce557610100808354040283529160200191610d10565b820191906000526020600020905b815481529060010190602001808311610cf357829003601f168201915b505050505081565b6003818154811061049757600080fd5b60016020528160005260406000208181548110610d4457600080fd5b906000526020600020906008020160009150915050806000018054610d6890611565565b80601f0160208091040260200160405190810160405280929190818152602001828054610d9490611565565b8015610de15780601f10610db657610100808354040283529160200191610de1565b820191906000526020600020905b815481529060010190602001808311610dc457829003601f168201915b505050600184015460028501546003860154600487015460058801805497986001600160a01b03909516979396509194509291610e1d90611565565b80601f0160208091040260200160405190810160405280929190818152602001828054610e4990611565565b8015610e965780601f10610e6b57610100808354040283529160200191610e96565b820191906000526020600020905b815481529060010190602001808311610e7957829003601f168201915b5050505050905086565b60056020528160005260406000208181548110610ebc57600080fd5b6000918252602090912001546001600160a01b03169150829050565b828054828255906000526020600020908101928215610f2d579160200282015b82811115610f2d57825182546001600160a01b0319166001600160a01b03909116178255602090920191600190910190610ef8565b50610f39929150610f3d565b5090565b5b80821115610f395760008155600101610f3e565b80356001600160a01b0381168114610f6957600080fd5b919050565b600060208284031215610f8057600080fd5b610f8982610f52565b9392505050565b6000815180845260005b81811015610fb657602081850181015186830182015201610f9a565b506000602082860101526020601f19601f83011685010191505092915050565b600081518084526020808501945080840160005b8381101561100f5781516001600160a01b031687529582019590820190600101610fea565b509495945050505050565b60006020808301818452808551808352604092508286019150828160051b87010184880160005b8381101561110457603f198984030185528151610100815181865261106882870182610f90565b915050888201516110838a8701826001600160a01b03169052565b508188015185890152606080830151908601526080808301519086015260a080830151868303828801526110b78382610f90565b9250505060c080830151868303828801526110d28382610fd6565b9250505060e080830151925085820381870152506110f08183610fd6565b968901969450505090860190600101611041565b509098975050505050505050565b60006020828403121561112457600080fd5b5035919050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff8111828210171561116a5761116a61112b565b604052919050565b600082601f83011261118357600080fd5b813567ffffffffffffffff81111561119d5761119d61112b565b6111b0601f8201601f1916602001611141565b8181528460208386010111156111c557600080fd5b816020850160208301376000918101602001919091529392505050565b600080600080600060a086880312156111fa57600080fd5b85359450602086013567ffffffffffffffff8082111561121957600080fd5b61122589838a01611172565b95506040880135945060608801359350608088013591508082111561124957600080fd5b5061125688828901611172565b9150509295509295909350565b600080600080600060a0868803121561127b57600080fd5b853567ffffffffffffffff8082111561129357600080fd5b61129f89838a01611172565b965060209150818801359550604088013594506060880135818111156112c457600080fd5b6112d08a828b01611172565b9450506080880135818111156112e557600080fd5b8801601f81018a136112f657600080fd5b8035828111156113085761130861112b565b8060051b9250611319848401611141565b818152928201840192848101908c85111561133357600080fd5b928501925b848410156113585761134984610f52565b82529285019290850190611338565b8096505050505050509295509295909350565b60006020808301818452808551808352604092508286019150828160051b87010184880160005b8381101561110457603f19898403018552815180516001600160a01b031684528701518784018790528051878501819052908801906060600582901b86018101919086019060005b8181101561149a57605f198885030183528451610100815181875261140182880182610f90565b9150508d82015161141c8f8801826001600160a01b03169052565b508c8201518d870152606082015160608701526080820151608087015260a082015186820360a08801526114508282610f90565b91505060c082015186820360c088015261146a8282610fd6565b91505060e0820151915085810360e08701526114868183610fd6565b968e019695505050918b01916001016113da565b5050509588019593505090860190600101611392565b602081526000610f896020830184610f90565b600080604083850312156114d657600080fd5b6114df83610f52565b946020939093013593505050565b60c08152600061150060c0830189610f90565b6001600160a01b038816602084015260408301879052606083018690526080830185905282810360a08401526115368185610f90565b9998505050505050505050565b6000806040838503121561155657600080fd5b50508035926020909101359150565b600181811c9082168061157957607f821691505b602082108103610c8457634e487b7160e01b600052602260045260246000fd5b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052601160045260246000fd5b6000600182016115d7576115d76115af565b5060010190565b601f82111561162857600081815260208120601f850160051c810160208610156116055750805b601f850160051c820191505b8181101561162457828155600101611611565b5050505b505050565b815167ffffffffffffffff8111156116475761164761112b565b61165b816116558454611565565b846115de565b602080601f83116001811461169057600084156116785750858301515b600019600386901b1c1916600185901b178555611624565b600085815260208120601f198616915b828110156116bf578886015182559484019460019091019084016116a0565b50858210156116dd5787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b87815260e06020820152600061170660e0830189610f90565b6001600160a01b0388166040840152606083018790526080830186905282810360a08401526117358186610f90565b9150508260c083015298975050505050505050565b8181038181111561175d5761175d6115af565b92915050565b83815260606020820152600061177c6060830185610f90565b905060018060a01b0383166040830152949350505050565b60c0815260006117a760c0830189610f90565b6001600160a01b0388166020840152604083018790526060830186905282810360808401526117d68186610f90565b9150508260a083015297965050505050505056fea2646970667358221220a781c49506cbddad437dd26755a0e7226f6df93c2206bfad337bdc54e85dab2b64736f6c63430008130033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 3953,
+        "contract": "contracts/CalendarOne.sol:CalendarOne",
+        "label": "calendarName",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_string_storage"
+      },
+      {
+        "astId": 3959,
+        "contract": "contracts/CalendarOne.sol:CalendarOne",
+        "label": "userEvents",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_array(t_struct(CalendarEvent)3943_storage)dyn_storage)"
+      },
+      {
+        "astId": 3962,
+        "contract": "contracts/CalendarOne.sol:CalendarOne",
+        "label": "users",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_array(t_address)dyn_storage"
+      },
+      {
+        "astId": 3965,
+        "contract": "contracts/CalendarOne.sol:CalendarOne",
+        "label": "eventCreators",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_array(t_address)dyn_storage"
+      },
+      {
+        "astId": 3969,
+        "contract": "contracts/CalendarOne.sol:CalendarOne",
+        "label": "eventCount",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_mapping(t_address,t_uint256)"
+      },
+      {
+        "astId": 3974,
+        "contract": "contracts/CalendarOne.sol:CalendarOne",
+        "label": "eventInvitations",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_mapping(t_uint256,t_array(t_address)dyn_storage)"
+      },
+      {
+        "astId": 3976,
+        "contract": "contracts/CalendarOne.sol:CalendarOne",
+        "label": "totalEvents",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_address)dyn_storage": {
+        "base": "t_address",
+        "encoding": "dynamic_array",
+        "label": "address[]",
+        "numberOfBytes": "32"
+      },
+      "t_array(t_struct(CalendarEvent)3943_storage)dyn_storage": {
+        "base": "t_struct(CalendarEvent)3943_storage",
+        "encoding": "dynamic_array",
+        "label": "struct CalendarOne.CalendarEvent[]",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_address,t_array(t_struct(CalendarEvent)3943_storage)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct CalendarOne.CalendarEvent[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_struct(CalendarEvent)3943_storage)dyn_storage"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_mapping(t_uint256,t_array(t_address)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => address[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_address)dyn_storage"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(CalendarEvent)3943_storage": {
+        "encoding": "inplace",
+        "label": "struct CalendarOne.CalendarEvent",
+        "members": [
+          {
+            "astId": 3926,
+            "contract": "contracts/CalendarOne.sol:CalendarOne",
+            "label": "title",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 3928,
+            "contract": "contracts/CalendarOne.sol:CalendarOne",
+            "label": "organizer",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address"
+          },
+          {
+            "astId": 3930,
+            "contract": "contracts/CalendarOne.sol:CalendarOne",
+            "label": "startTime",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3932,
+            "contract": "contracts/CalendarOne.sol:CalendarOne",
+            "label": "endTime",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3934,
+            "contract": "contracts/CalendarOne.sol:CalendarOne",
+            "label": "created",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3936,
+            "contract": "contracts/CalendarOne.sol:CalendarOne",
+            "label": "metadataURI",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 3939,
+            "contract": "contracts/CalendarOne.sol:CalendarOne",
+            "label": "invitedAttendees",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_array(t_address)dyn_storage"
+          },
+          {
+            "astId": 3942,
+            "contract": "contracts/CalendarOne.sol:CalendarOne",
+            "label": "confirmedAttendees",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_array(t_address)dyn_storage"
+          }
+        ],
+        "numberOfBytes": "256"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
