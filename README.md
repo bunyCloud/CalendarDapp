@@ -1,8 +1,3 @@
-# Telos Calendar dApp
-
-
-- `Telos Testnet RPC:` `https://testnet.telos.net/evm`
-
   # Calendar dApp
 ### Telos Blockchain
 ## Concept
