@@ -3,7 +3,7 @@
 ## Concept
 Solidity Smartcontracts create token bound nft accounts that allow the NFT owners to create on chain account wallets for managing date/time specific events, nft ticket events, erc20 deposits. 
 
-_ This is a work in progress. 
+*Working but in active development.
 
 #### Deploy SmartContracts
 Open hardhat folder.
