@@ -1,5 +1,11 @@
   # Calendar dApp
 ### Telos Blockchain
+
+| Repo | README |
+| ------ | ------ |
+| ERC6551 | https://github.com/bunyCloud/ERC6551/README.md |
+| Calendar | https://github.com/bunyCloud/Solidity-calendar/README.md 
+
 ## Concept
 Solidity Smartcontracts create token bound nft accounts that allow the NFT owners to create on chain account wallets for managing date/time specific events, nft ticket events, erc20 deposits. 
 
