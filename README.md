@@ -5,7 +5,7 @@
 | Repo | README |
 | ------ | ------ |
 | ERC6551 | https://github.com/bunyCloud/ERC6551/README.md |
-| Calendar | [[https://github.com/bunyCloud/Solidity-calendar/blob/main/README.md]](https://github.com/bunyCloud/Solidity-calendar/blob/main/README.md) |
+| Calendar | [[https://github.com/bunyCloud/Solidity-calendar/|
 | EIP| https://eips.ethereum.org/EIPS/eip-6551 |
 
 ## Concept
