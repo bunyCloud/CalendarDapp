@@ -1295,8 +1295,8 @@ interface ERC20 {
     ) external returns (bool);
 }
 
-interface CalendarOne {
-    function createTelosCalendarEvent(
+interface DailyTelosCalendar {
+    function createEvent(
         string memory title,
         uint256 startTime,
         uint256 endTime,
@@ -1307,13 +1307,13 @@ interface CalendarOne {
 
 contract BunyERC6551Account is IERC165, IERC1271, IERC6551Account {
     uint256 private _nonce;
-    string public accountName = "IBUNY ERC6551 Token Owned Account";
+    string public accountName = "Daily Telos Token Owned Account";
     uint256 public depositCount = 0;
     mapping(uint256 => Deposit) public deposits;
     mapping(address => uint256) tokenBalances;
     mapping(address => PrivateCalendarEvent[]) public userPrivateEvents;
     mapping(address => CalendarEvent[]) public userEvents;
-    address public calendarAddress = 0x37F8Bb1B8798CEFAbDb7f8BbDE61A168705404D4;
+    address public calendarAddress;
     mapping(uint256 => address[]) public eventInvitations;
     address[] public users;
     address[] public eventCreators;
@@ -1352,14 +1352,7 @@ contract BunyERC6551Account is IERC165, IERC1271, IERC6551Account {
         uint256 timestamp
     );
 
-    event NewEventCreated(
-        string title,
-        address organizer,
-        uint256 startTime,
-        uint256 endTime,
-        string metadataURI,
-        uint256 created
-    );
+  
 
     event UserInvited(uint256 eventID, string title, address invitee);
 
@@ -1432,46 +1425,9 @@ contract BunyERC6551Account is IERC165, IERC1271, IERC6551Account {
         calendarAddress = _contractAddress;
     }
 
-    // private calendar events are saved on this contract
-    function createPrivateCalendarEvent(
-        string memory title,
-        uint256 startTime,
-        uint256 endTime
-    ) public {
-        require(
-            msg.sender == owner(),
-            "Only owner can create calendar events "
-        );
-        PrivateCalendarEvent memory privateCalendarEvent;
-        privateCalendarEvent.title = title;
-        privateCalendarEvent.startTime = startTime;
-        privateCalendarEvent.endTime = endTime;
-        privateCalendarEvent.attendee = address(this);
-        userPrivateEvents[address(this)].push(privateCalendarEvent);
-        emit NewPrivateEventCreated(
-            title,
-            address(this),
-            startTime,
-            endTime,
-            block.timestamp
-        );
-    }
-
-    // private calendar events saved on contract
-    function getUserPrivateEvents(address user)
-        public
-        view
-        returns (PrivateCalendarEvent[] memory)
-    {
-        require(
-            msg.sender == owner(),
-            "Only the contract owner can fetch private events"
-        );
-        return userPrivateEvents[user];
-    }
-
+    
     // public events saved on remote contract
-    function getUserPublicEvents(address user)
+    function getUserEvents(address user)
         public
         view
         returns (CalendarEvent[] memory)
@@ -1479,7 +1435,7 @@ contract BunyERC6551Account is IERC165, IERC1271, IERC6551Account {
         return userEvents[user];
     }
 
-    function createTelosCalendarEvent(
+    function createEvent(
         string memory title,
         uint256 startTime,
         uint256 endTime,
@@ -1491,11 +1447,11 @@ contract BunyERC6551Account is IERC165, IERC1271, IERC6551Account {
             "Only NFT owner can create calendar events"
         );
 
-        // Instantiate the CalendarOne interface
-        CalendarOne calendar = CalendarOne(calendarAddress);
+        // Instantiate the DailyTelosCalendar interface
+        DailyTelosCalendar calendar = DailyTelosCalendar(calendarAddress);
 
         // Call the function on the external contract
-        calendar.createTelosCalendarEvent(
+        calendar.createEvent(
             title,
             startTime,
             endTime,
@@ -1503,7 +1459,7 @@ contract BunyERC6551Account is IERC165, IERC1271, IERC6551Account {
             invitees
         );
 
-        // Create a new local event
+        // Create a new event
         CalendarEvent memory newEvent;
         newEvent.title = title;
         newEvent.startTime = startTime;
@@ -1528,14 +1484,7 @@ contract BunyERC6551Account is IERC165, IERC1271, IERC6551Account {
             emit UserInvited(eventID, title, invitees[i]);
         }
 
-        emit NewEventCreated(
-            title,
-            msg.sender,
-            startTime,
-            endTime,
-            metadataURI,
-            block.timestamp
-        );
+
     }
 
     // receive native chain erc20 tokens ie. TLOS

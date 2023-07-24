@@ -1,3 +1,5 @@
+import "@openzeppelin/contracts/access/Ownable.sol";
+
 
 interface IERC6551Registry {
     
@@ -68,11 +70,11 @@ library Create2 {
 
 pragma solidity ^0.8.13;
 
-contract BunyERC6551Registry is IERC6551Registry {
+contract BunyERC6551Registry is IERC6551Registry, Ownable {
     error InitializationFailed();
     uint256 public accountCounter = 0;
-    mapping(address => IBunyAccount) public accounts;
-    address public calendarAddress = 0x37F8Bb1B8798CEFAbDb7f8BbDE61A168705404D4;
+    mapping(address => IBunyAccount) public tokenBoundAccounts;
+    address public calendarAddress;
 
   event AccountCreated(
         address account,
@@ -95,6 +97,11 @@ contract BunyERC6551Registry is IERC6551Registry {
         address calendarAddress;
     }
 
+     constructor(address _calendarAddress) {
+    calendarAddress = _calendarAddress;
+    transferOwnership(msg.sender);
+  }
+
 
     function createAccount(
         address implementation,
@@ -116,7 +123,7 @@ contract BunyERC6551Registry is IERC6551Registry {
             if (!success) revert InitializationFailed();
         }
         accountCounter++;
-        accounts[_account] = IBunyAccount(implementation, chainId, tokenContract, tokenId, salt, calendarAddress);
+        tokenBoundAccounts[_account] = IBunyAccount(implementation, chainId, tokenContract, tokenId, salt, calendarAddress);
         emit AccountCreated(
             _account,
             implementation,
@@ -143,6 +150,11 @@ contract BunyERC6551Registry is IERC6551Registry {
         return Create2.computeAddress(bytes32(salt), bytecodeHash);
     }
 
+ function getAccountDetails(address accountAddress) public view returns (address,uint256,address,uint256,uint256,address) {
+        IBunyAccount memory details = tokenBoundAccounts[accountAddress];
+        return (details.implementation, details.chainId, details.tokenContract, details.tokenId, details.salt, details.calendarAddress);
+    }
+
     function _creationCode(
         address implementation_,
         uint256 chainId_,
@@ -158,4 +170,8 @@ contract BunyERC6551Registry is IERC6551Registry {
                 abi.encode(salt_, chainId_, tokenContract_, tokenId_)
             );
     }
+
+    function setCalendarAddress(address _contractAddress) public onlyOwner {
+    calendarAddress = _contractAddress;
+  }
 }
