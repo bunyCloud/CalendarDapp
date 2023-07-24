@@ -13,12 +13,12 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   //
 let calendar = 'input calendar address'
   // Deploy
-  await deploy("BunyERC6551Registry", {
+  await deploy("CalendarDailyTelos", {
     from: deployer,
-    //args: [marketplace],
+    args: [calendar],
     log: true,
     waitConfirmations: 2,
   });
 
 };
-module.exports.tags = ["BunyERC6551Registry"];
+module.exports.tags = ["CalendarDailyTelos"];
