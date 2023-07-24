@@ -1,14 +1,9 @@
 const { ethers } = require("hardhat");
 
-const localChainId = "31337";
 
-// const sleep = (ms) =>
-//   new Promise((r) =>
-//     setTimeout(() => {
-//       console.log(`waited for ${(ms / 1000).toFixed(3)} seconds`);
-//       r();
-//     }, ms)
-//   );
+/// Deploy CalendarDailyTelos
+// Deploy BunyERC6551Registry with calendar address in arguments
+/// Deploy BunyERC6551Account
 
 module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deploy } = deployments;
@@ -16,15 +11,14 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const chainId = await getChainId();
 
   //
-  const marketplace = "0x300616A3C499Ff1A540f02dF784472fFf672FbC3"; // telos testnet
-
+let calendar = 'input calendar address'
   // Deploy
-  await deploy("BunyERC6551Registry", {
+  await deploy("CalendarDailyTelos", {
     from: deployer,
-    //args: [marketplace],
+    args: [calendar],
     log: true,
     waitConfirmations: 2,
   });
 
 };
-module.exports.tags = ["BunyERC6551Registry"];
+module.exports.tags = ["CalendarDailyTelos"];
