@@ -19,8 +19,7 @@ contract TheBUNY is ERC721, Ownable {
   address public marketplaceAddress;
   bool public paused = false;
 
-  constructor(address _contractAddress) ERC721('The BUNY Project Telos NFT Proxy Account', 'IBUNY') {
-    marketplaceAddress = _contractAddress;
+  constructor() ERC721('The BUNY Project Telos NFT Proxy Account', 'IBUNY') {
   }
 
   mapping(bytes32 => bool) public forSale;

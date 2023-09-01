@@ -3,9 +3,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 interface IERC6551Registry {
     
-  
-
-    
+      
     function createAccount(
         address implementation,
         uint256 chainId,
@@ -75,6 +73,8 @@ contract BunyERC6551Registry is IERC6551Registry, Ownable {
     uint256 public accountCounter = 0;
     mapping(address => IBunyAccount) public tokenBoundAccounts;
     address public calendarAddress;
+    NftList[] public registeredNfts;
+
 
   event AccountCreated(
         address account,
@@ -83,7 +83,6 @@ contract BunyERC6551Registry is IERC6551Registry, Ownable {
         address tokenContract,
         uint256 tokenId,
         uint256 salt,
-        address calendarAddress,
         uint timestamp
     );
 
@@ -97,8 +96,14 @@ contract BunyERC6551Registry is IERC6551Registry, Ownable {
         address calendarAddress;
     }
 
-     constructor(address _calendarAddress) {
-    calendarAddress = _calendarAddress;
+    struct NftList {
+        address tokenContract;
+        uint256 tokenId;
+        uint256 chainId;
+    }
+
+      constructor() {
+    
     transferOwnership(msg.sender);
   }
 
@@ -123,6 +128,7 @@ contract BunyERC6551Registry is IERC6551Registry, Ownable {
             if (!success) revert InitializationFailed();
         }
         accountCounter++;
+        registeredNfts.push(NftList(tokenContract, tokenId, chainId));
         tokenBoundAccounts[_account] = IBunyAccount(implementation, chainId, tokenContract, tokenId, salt, calendarAddress);
         emit AccountCreated(
             _account,
@@ -131,10 +137,13 @@ contract BunyERC6551Registry is IERC6551Registry, Ownable {
             tokenContract,
             tokenId,
             salt,
-            calendarAddress,
             block.timestamp
         );
         return _account;
+    }
+
+     function getAllRegisteredNfts() external view returns (NftList[] memory) {
+        return registeredNfts;
     }
 
     function account(
