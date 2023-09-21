@@ -8,9 +8,12 @@
     "@chakra-ui/react": "^2.6.1",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@metamask/detect-provider": "^2.0.0",
+    "@metamask/onboarding": "^1.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "antd": "^5.5.0",
+    "antd-mobile": "^5.32.3",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "eslint": "^3.9.1",
@@ -24,6 +27,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.1",
+    "react-share": "^4.4.1",
+    "use-session-storage-state": "^18.2.0",
     "web-vitals": "^2.1.4",
     "web3modal": "^1.9.12"
   },
@@ -50,5 +55,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "depcheck": "^1.4.6",
+    "eslint-config-react-app": "^7.0.1"
   }
 }
