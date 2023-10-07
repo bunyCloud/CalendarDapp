@@ -1,7 +1,7 @@
 import { Button, Center, HStack, Text } from '@chakra-ui/react'
 import { useMetaMask } from '../../hooks/useMetamask'
 
-export const HeaderConnect = () => {
+export default function HeaderConnect(){
   const { wallet, hasProvider, isConnecting, connectMetaMask } = useMetaMask()
 
   return (

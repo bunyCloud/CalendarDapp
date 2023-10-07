@@ -4,7 +4,7 @@ import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
 const NetworkSwitcherIconOnly = () => {
   const [selectedNetwork, setSelectedNetwork] = useState('Telos Testnet');
-  const [provider, setProvider] = useState('https://testnet.telos.net/evm');
+  const [rpcUrl, setRpcUrl] = useState('https://testnet15.telos.caleos.io/evm');
   
   const switchNetwork = async (network) => {
     const networkData = {
@@ -20,7 +20,7 @@ const NetworkSwitcherIconOnly = () => {
         },
         'Telos Testnet': {
             chainId: 41,
-            rpcUrl: 'https://testnet.telos.net/evm/',
+            rpcUrl: 'https://testnet15.telos.caleos.io/evm/',
             nativeCurrency: {
                 name: 'Telos',
                 symbol: 'TLOS',

@@ -1,0 +1,13 @@
+diff --git a/node_modules/@carbon/styles/scss/components/modal/_modal.scss b/node_modules/@carbon/styles/scss/components/modal/_modal.scss
+index 23f182d..e5dd0cf 100644
+--- a/node_modules/@carbon/styles/scss/components/modal/_modal.scss
++++ b/node_modules/@carbon/styles/scss/components/modal/_modal.scss
+@@ -313,7 +313,7 @@
+ 
+     @include breakpoint(lg) {
+       inline-size: 42%;
+-      max-block-size: 72%;
++      max-block-size: 77%;
+ 
+       .#{$prefix}--modal-content > p,
+       .#{$prefix}--modal-content__regular-content {

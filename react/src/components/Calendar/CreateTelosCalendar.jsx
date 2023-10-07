@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {  Box, Input, Button, Text, HStack } from '@chakra-ui/react';
 
 
-const CreateTelosCalendar = ({onCalendarNameChange, next}) => {
+const CreateTelosCalendar = ({onCalendarNameChange, next, createCalendar}) => {
     const [calendarName, setCalendarName] = useState('');
   
 
@@ -16,6 +16,7 @@ const CreateTelosCalendar = ({onCalendarNameChange, next}) => {
         if (event.key === 'Enter') {
           // Trigger the same logic as the button's click event when 'Enter' is pressed
           next();
+          createCalendar()
         }
       };
     

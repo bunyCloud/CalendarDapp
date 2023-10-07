@@ -1,0 +1,13 @@
+diff --git a/node_modules/antd-mobile/es/components/floating-bubble/floating-bubble.css b/node_modules/antd-mobile/es/components/floating-bubble/floating-bubble.css
+index e238831..a54ee71 100644
+--- a/node_modules/antd-mobile/es/components/floating-bubble/floating-bubble.css
++++ b/node_modules/antd-mobile/es/components/floating-bubble/floating-bubble.css
+@@ -3,7 +3,7 @@
+   --initial-position-right: var(--initial-position-right);
+   --initial-position-top: var(--initial-position-top);
+   --initial-position-bottom: var(--initial-position-bottom);
+-  --z-index: 1;
++  --z-index: 999;
+   --edge-distance: 0;
+   --size: 48px;
+   --border-radius: 50%;

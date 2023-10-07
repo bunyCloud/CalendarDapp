@@ -1,49 +1,66 @@
 {
-  "name": "daily-telos",
+  "name": "daily-telos-template",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dailytelos.netlify.app",
   "dependencies": {
-    "@ant-design/icons": "^5.1.0",
-    "@chakra-ui/icons": "^2.0.19",
-    "@chakra-ui/react": "^2.6.1",
-    "@emotion/react": "^11.11.0",
+    "@ant-design/icons": "^5.2.6",
+    "@carbon/icons": "^11.27.0",
+    "@carbon/icons-react": "^11.27.0",
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.1",
+    "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@metamask/detect-provider": "^2.0.0",
-    "@metamask/onboarding": "^1.0.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "antd": "^5.5.0",
-    "antd-mobile": "^5.32.3",
-    "axios": "^1.4.0",
+    "@metamask/providers": "^13.0.0",
+    "@metamask/sdk-react": "^0.7.0",
+    "@mui/material": "^5.14.11",
+    "@mui/styled-engine-sc": "^5.14.11",
+    "@mui/x-date-pickers": "^6.16.0",
+    "antd": "^5.9.2",
+    "antd-mobile": "^5.32.4",
+    "buffer": "^6.0.3",
     "date-fns": "^2.30.0",
-    "eslint": "^3.9.1",
-    "ethers": "^5.7.2",
-    "framer-motion": "^10.12.16",
-    "ipfs-http-client": "^50.1.2",
+    "dayjs": "^1.11.10",
+    "express": "^4.18.1",
+    "framer-motion": "^10.16.4",
     "moment": "^2.29.4",
-    "netlify-cli": "^16.4.2",
-    "react": "^18.2.0",
-    "react-big-calendar": "^1.8.0",
-    "react-datepicker": "^4.14.1",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^5.3.0",
-    "react-scripts": "5.0.1",
+    "react-date-range": "^1.4.0",
+    "react-datepicker": "^4.18.0",
+    "react-float-menu": "^0.4.7",
     "react-share": "^4.4.1",
-    "use-session-storage-state": "^18.2.0",
-    "web-vitals": "^2.1.4",
+    "react-time-picker": "^6.5.1",
+    "reactstrap": "^9.2.0",
+    "styled-components": "^6.0.8",
     "web3modal": "^1.9.12"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@carbon/react": "^1.8.0",
+    "@tanstack/react-query": "^4.0.10",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "axios": "^1.4.0",
+    "depcheck": "^1.4.6",
+    "ethers": "^5.7.2",
+    "ipfs-http-client": "^50.1.2",
+    "netlify-cli": "^16.4.2",
+    "patch-package": "^8.0.0",
+    "react": "^18.2.0",
+    "react-big-calendar": "^1.8.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.53.0",
+    "web-vitals": "^2.1.4"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "scripts": {
+    "start:dev": "react-scripts start",
+    "start": "node server/server.js",
+    "postinstall": "patch-package",
+    "build": "react-scripts build",
+    "deploy": "netlify deploy --prod",
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
@@ -56,9 +73,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "depcheck": "^1.4.6",
-    "eslint-config-react-app": "^7.0.1"
   }
 }

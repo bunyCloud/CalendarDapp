@@ -2,7 +2,7 @@
   "_format": "hh-sol-artifact-1",
   "contractName": "CalendarDailyTelos",
   "sourceName": "contracts/CalendarDailyTelos.sol",
-  "address": "0x1B43eb39e448659e0ADc645b9170d54fEE44953D",
+  "address": "0x8e06252ee2DD4df407bc35D4e3c630dF1D2eAEDf",
   "abi": [
     {
       "inputs": [
@@ -18,26 +18,7 @@
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address[]",
-          "name": "adminAddresses",
-          "type": "address[]"
-        }
-      ],
-      "name": "addAdmins",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "guestAddress",
-          "type": "address"
-        }
-      ],
+      "inputs": [],
       "name": "addGuest",
       "outputs": [],
       "stateMutability": "nonpayable",
@@ -141,19 +122,6 @@
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "memberAddress",
-          "type": "address"
-        }
-      ],
-      "name": "removeMember",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
           "internalType": "string",
           "name": "_calendarName",
           "type": "string"
@@ -221,6 +189,19 @@
       ],
       "name": "NewEventCreated",
       "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "memberAddress",
+          "type": "address"
+        }
+      ],
+      "name": "removeMember",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
       "inputs": [
@@ -628,77 +609,31 @@
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "adminAddress",
-          "type": "address"
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
         }
       ],
-      "name": "getAdminEvents",
+      "name": "getAddressesByRole",
       "outputs": [
         {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "eventId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "title",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "description",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "organizer",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "startTime",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "endTime",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "created",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "metadataURI",
-              "type": "string"
-            },
-            {
-              "internalType": "address[]",
-              "name": "invitedAttendees",
-              "type": "address[]"
-            },
-            {
-              "internalType": "address[]",
-              "name": "confirmedAttendees",
-              "type": "address[]"
-            }
-          ],
-          "internalType": "struct CalendarDailyTelos.CalendarEvent[]",
+          "internalType": "address[]",
           "name": "",
-          "type": "tuple[]"
+          "type": "address[]"
         }
       ],
       "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "getAllAdminEvents",
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "adminAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getAdminEvents",
       "outputs": [
         {
           "components": [
@@ -827,162 +762,6 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "getAllGuestAddresses",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllGuestEvents",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "eventId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "title",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "description",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "organizer",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "startTime",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "endTime",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "created",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "metadataURI",
-              "type": "string"
-            },
-            {
-              "internalType": "address[]",
-              "name": "invitedAttendees",
-              "type": "address[]"
-            },
-            {
-              "internalType": "address[]",
-              "name": "confirmedAttendees",
-              "type": "address[]"
-            }
-          ],
-          "internalType": "struct CalendarDailyTelos.CalendarEvent[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllMemberAddresses",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllMemberEvents",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "eventId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "title",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "description",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "organizer",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "startTime",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "endTime",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "created",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "metadataURI",
-              "type": "string"
-            },
-            {
-              "internalType": "address[]",
-              "name": "invitedAttendees",
-              "type": "address[]"
-            },
-            {
-              "internalType": "address[]",
-              "name": "confirmedAttendees",
-              "type": "address[]"
-            }
-          ],
-          "internalType": "struct CalendarDailyTelos.CalendarEvent[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -1048,6 +827,77 @@
           "internalType": "struct CalendarDailyTelos.CalendarEvent",
           "name": "",
           "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getEventsByRole",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "eventId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "title",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "organizer",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "startTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "endTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "created",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "metadataURI",
+              "type": "string"
+            },
+            {
+              "internalType": "address[]",
+              "name": "invitedAttendees",
+              "type": "address[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "confirmedAttendees",
+              "type": "address[]"
+            }
+          ],
+          "internalType": "struct CalendarDailyTelos.CalendarEvent[]",
+          "name": "",
+          "type": "tuple[]"
         }
       ],
       "stateMutability": "view",

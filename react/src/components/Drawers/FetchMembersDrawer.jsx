@@ -11,9 +11,7 @@ import { AppContext } from '../../AppContext';
 const FetchMembersDrawer = () => {
   const [members, setMembers] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const {displayCalendar} = useContext(AppContext);
-
-  const provider = new ethers.providers.JsonRpcProvider('https://testnet.telos.net/evm');
+  const {displayCalendar, provider} = useContext(AppContext);
   const contract = new ethers.Contract(displayCalendar, CalendarDailyTelos.abi, provider);
 
   async function fetchAllAddresses() {

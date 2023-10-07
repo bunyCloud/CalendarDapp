@@ -8,14 +8,14 @@ import FetchEventId from './FetchEventId';
 
 const FetchInvitations = () => {
   const [invitations, setInvitations] = useState([]);
-  const { logged, account, invitationCount, displayCalendar, setInvitationCount } = useContext(AppContext);
+  const { logged, account, invitationCount, displayCalendar, setInvitationCount, rpcUrl } = useContext(AppContext);
 
 
   
   useEffect(() => {
     const fetchInvitations = async () => {
       try {
-        const provider = new ethers.providers.JsonRpcProvider('https://testnet.telos.net/evm');
+        const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
         const contract = new ethers.Contract(displayCalendar, CalendarDailyTelos.abi, provider);
 
         const invitationNumbers = await contract.getInvitations(account);

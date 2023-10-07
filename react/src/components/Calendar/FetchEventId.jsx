@@ -7,7 +7,7 @@ import { formatAddress } from '../../utils/formatMetamask'
 
 const FetchEventId = ({ eventId }) => {
   const [event, setEvent] = useState(null)
-  const { displayCalendar, account, accountAddress } = useContext(AppContext)
+  const { displayCalendar, rpcUrl, account, accountAddress } = useContext(AppContext)
 
   
   const formatTimestamp = (timestamp) => {
@@ -19,7 +19,7 @@ const FetchEventId = ({ eventId }) => {
   useEffect(() => {
     const fetchEventById = async () => {
       try {
-        const provider = new ethers.providers.JsonRpcProvider('https://testnet.telos.net/evm')
+        const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
         const contract = new ethers.Contract(displayCalendar, CalendarDailyTelos.abi, provider)
         const fetchedEvent = await contract.getEventById(eventId)
         console.log(fetchedEvent)

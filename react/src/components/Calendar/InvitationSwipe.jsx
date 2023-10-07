@@ -28,7 +28,7 @@ const FetchEventId = ({ eventId, acceptInvite }) => {
   useEffect(() => {
     const fetchEventById = async () => {
       try {
-        const provider = new ethers.providers.JsonRpcProvider('https://testnet.telos.net/evm');
+        const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
         const contract = new ethers.Contract(displayCalendar, CalendarDailyTelos.abi, provider);
         const fetchedEvent = await contract.getEventById(eventId);
         setEvent(fetchedEvent);
@@ -97,7 +97,7 @@ const InvitationSwipe = ({account, logged}) => {
     
     const fetchInvitations = async () => {
       try {
-        const provider = new ethers.providers.JsonRpcProvider('https://testnet.telos.net/evm');
+        const provider = new ethers.providers.JsonRpcProvider('https://testnet15.telos.caleos.io/evm');
         const contract = new ethers.Contract(displayCalendar, CalendarDailyTelos.abi, provider);
         const invitationNumbers = await contract.getInvitations(account);
         const invitationStrings = invitationNumbers.map((number) => number.toString());

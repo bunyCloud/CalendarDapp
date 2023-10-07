@@ -1,42 +1,39 @@
-import React, { useState } from 'react'
-import { Popup, Space } from 'antd-mobile'
-import { Box, HStack, Button, IconButton, Text, Tooltip } from '@chakra-ui/react'
-import { AddIcon, CalendarIcon } from '@chakra-ui/icons'
-import CreateCalendarForm from '../Forms/CreateCalendarForm'
+import React from 'react';
+import {
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerCloseButton,
+  DrawerBody,
+  useDisclosure,
+} from '@chakra-ui/react';
+import CreateCalendarForm from '../Forms/CreateCalendarForm';
+import { Button } from '@carbon/react';
 
-const AddCalendarDrawer = () => {
-  const [visible1, setVisible1] = useState(false)
+function AddCalendarDrawer() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box>
-      <Tooltip label="Create New Calendar" placement="top">
-        <IconButton
-          onClick={() => {
-            setVisible1(true)
-          }}
-          bg="transparent"
-          color="black"
-          size="md"
-          icon={<CalendarIcon />}
-        />
-      </Tooltip>
+    <>
+      {/* Here's the Carbon button. Adjust its props/styles as needed. */}
+      <Button size="sm" kind='danger--ghost' onClick={onOpen} style={{ width: '100%' }}>
+        Create Calendar
+      </Button>
 
-      <Popup
-        position="right"
-        visible={visible1}
-        onMaskClick={() => {
-          setVisible1(false)
-        }}
-        bodyStyle={{ height: '100%', width: '300px' }}>
-        <div style={{ padding: '14px', marginTop: '40px' }}>
-          <Space direction="vertical">
-            <CreateCalendarForm />
-          </Space>
-        </div>
-        
-      </Popup>
-    </Box>
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose} >
+        <DrawerOverlay>
+          <DrawerContent zIndex={99999999}>
+            <DrawerHeader>Create Calendar</DrawerHeader>
+            <DrawerCloseButton />
+            <DrawerBody>
+              <CreateCalendarForm />
+            </DrawerBody>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    </>
   )
 }
 
-export default AddCalendarDrawer
+export default AddCalendarDrawer;

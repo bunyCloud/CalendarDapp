@@ -1,0 +1,31 @@
+@use './components/Header/header';
+@use './components/Info/info';
+@use './content/UIShell/UIShell';
+@use './content/LandingPage/landing-page';
+@use 'react-big-calendar/lib/sass/styles';
+
+.app .cds--content {
+  margin-top: '3rem';
+}
+.rdrDefinedRangesWrapper {
+  display: none;
+}
+
+.rbc-toolbar {
+  display: flex;
+  flex-direction: column; /* Display items vertically */
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* Style the button sets */
+.rbc-btn-group {
+  margin: 5px; /* Add margin between button sets */
+}
+
+/* Style the line of text */
+.rbc-text {
+  margin-top: 10px; /* Add margin to separate text from buttons */
+}
+

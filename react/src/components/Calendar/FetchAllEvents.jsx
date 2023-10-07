@@ -1,56 +1,44 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Center, HStack, Text, VStack, Wrap, WrapItem, IconButton, Image, Grid, GridItem } from '@chakra-ui/react'
-import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons' // Import Chakra UI arrow icons
-import { format } from 'date-fns'
+import { Center, Text, VStack, Wrap, WrapItem, IconButton, Image, HStack } from '@chakra-ui/react'
 import { ethers } from 'ethers'
-import { formatAddress } from '../../utils/formatMetamask'
 import CalendarDailyTelos from '../../contracts/CalendarDailyTelos.json'
 import { Layout, Space } from 'antd'
 import { AppContext } from '../../AppContext'
+import { SkipBack, SkipForward } from '@carbon/icons-react'
 
 const { Footer, Content } = Layout
 
-const headerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  height: 50,
-  width: 'auto',
-  marginBottom: 5,
-  border: '1px solid silver',
-  backgroundColor: '#7dbcea',
-}
 
 const contentStyle = {
   textAlign: 'center',
-  //minHeight: 120,
-  //lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#108ee9',
-}
-
-const footerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  height: 'auto',
-  backgroundColor: '#7dbcea',
-  border: '1px solid silver',
+  width: '100%',
+  
+  borderTop: '0.5px solid silver',
+  borderBottom: '0.5px solid silver',
+  //minHeight: '250px',
+  //marginBottom: '15px',
+  //color: 'white',
+  //backgroundColor: 'white',
+  color: 'black',
 }
 
 const FetchAllEvents = () => {
-  const { displayCalendar } = useContext(AppContext)
+  const { displayCalendar, rpcUrl } = useContext(AppContext)
   const [events, setEvents] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [currentEventIndex, setCurrentEventIndex] = useState(0)
-  const provider = new ethers.providers.JsonRpcProvider('https://testnet.telos.net/evm')
-  const contract = new ethers.Contract(displayCalendar, CalendarDailyTelos.abi, provider)
 
+
+  
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp * 1000)
-    return date
+    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+    return date.toLocaleString('en-US', options)
   }
 
-
   async function fetchAllEvents() {
+    const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
+    const contract = new ethers.Contract(displayCalendar, CalendarDailyTelos.abi, provider)
     setIsLoading(true)
     console.log('loading events....')
     const all = await contract.getAllEvents()
@@ -61,7 +49,6 @@ const FetchAllEvents = () => {
   }
 
   useEffect(() => {
-
     fetchAllEvents().then((events) => setEvents(events))
   }, [displayCalendar])
 
@@ -76,57 +63,48 @@ const FetchAllEvents = () => {
   const currentEvent = events[currentEventIndex]
 
   return (
-    <Space direction="vertical" style={{ width: '100%' }} size={[0, 48]}>
-      <Layout>
-        <Center style={headerStyle}>
-          <Text>{currentEvent && <>{currentEvent.title}</>}</Text>
-        </Center>
-        <Content>
-          <Center h={250}>
-            <VStack spacing={4}>
-              {isLoading && (
-                <>
-                  <Text>Loading....</Text>
-                </>
-              )}
-              {currentEvent && !isLoading && (
-                <Wrap spacing={4} justify="center" align="center">
-                  <WrapItem key={currentEventIndex} w="100%">
-                    <div style={{ fontSize: '12px', display: 'flex', alignItems: 'center' }}>
-                      <VStack>
-                        <Image src={currentEvent.metadataURI} objectFit="cover" maxHeight="180px" />
-                        <div style={{ padding: '4px', marginLeft: '4px' }}>
-                          {/*  <Text as='b'>{currentEvent.title}</Text> */}
-                          <HStack>
-                            <Text as="b">Description:</Text> <p> {currentEvent.description}</p>
-                          </HStack>
-                          <HStack>
-                            <Text as="b">Start:</Text> <p>{currentEvent.startTime.toString()}</p>
-                          </HStack>
-                          <HStack>
-                            <Text as="b">End:</Text> <p>{currentEvent.endTime.toString()}</p>
-                          </HStack>
-                          {/* Invitees */}
-                        </div>
-                      </VStack>
-                    </div>
-                  </WrapItem>
-                </Wrap>
-              )}
-            </VStack>
+    <Space direction="vertical" style={contentStyle}>
+      <Center>
+        <VStack spacing={2} w="100%">
+          {isLoading && (
+            <>
+              <Text color='white'>Loading Events....</Text>
+            </>
+          )}
+          {!isLoading && !currentEvent && (
+        <Text color='white'>No events found...</Text>
+      )}
+          {currentEvent && !isLoading && (
+            <Wrap spacing={2} justify="center" align="center" color="white" >
+              <WrapItem key={currentEventIndex} w="100%" >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <VStack mb={8}>
+                    <Text as="b" fontSize={'16px'}>
+                      {currentEvent.title}
+                    </Text>
+                    <Text mt={-2} fontSize={'12px'}>
+                      {formatTimestamp(currentEvent.startTime)}
+                    </Text>
+                   
+                    <HStack>
+          <IconButton size='xs' variant={'unstyled'} aria-label="Previous Event" icon={<SkipBack />} onClick={handlePreviousEvent} isDisabled={events.length <= 1} />
+          <Image src={currentEvent.metadataURI} objectFit="cover" maxHeight="180px" />
+<IconButton variant={'unstyled'} size={'xs'} aria-label="Next Event" icon={<SkipForward />} onClick={handleNextEvent} isDisabled={events.length <= 1} />
+          </HStack>
+                    
+
+                    
+                  </VStack>
+                </div>
+              </WrapItem>
+            </Wrap>
+          )}
+
+          <Center color="white" mt={-6}>
+
           </Center>
-        </Content>
-        <Footer style={footerStyle}>
-          <Grid templateColumns="repeat(5, 1fr)" gap={4}>
-            <GridItem colSpan={2} h="auto">
-              <IconButton aria-label="Previous Event" icon={<ArrowBackIcon />} onClick={handlePreviousEvent} isDisabled={events.length <= 1} />
-            </GridItem>
-            <GridItem colStart={4} colEnd={6} h="auto">
-              <IconButton aria-label="Next Event" icon={<ArrowForwardIcon />} onClick={handleNextEvent} isDisabled={events.length <= 1} />
-            </GridItem>
-          </Grid>
-        </Footer>
-      </Layout>
+        </VStack>
+      </Center>
     </Space>
   )
 }

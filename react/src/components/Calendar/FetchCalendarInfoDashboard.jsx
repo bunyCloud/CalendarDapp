@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Text, HStack, Center, VStack, Wrap, WrapItem } from '@chakra-ui/react'
+import { Text, HStack, Center, VStack, Wrap, WrapItem, Heading } from '@chakra-ui/react'
 import CalendarDailyTelos from '../../contracts/CalendarDailyTelos.json'
 import { ethers } from 'ethers'
 import { Tag } from 'antd-mobile'
 import { AppContext } from '../../AppContext'
 
 const FetchCalendarInfoDashboard = () => {
-  const { displayCalendar } = useContext(AppContext)
+  const { displayCalendar, rpcUrl } = useContext(AppContext)
   const [adminCount, setAdminCount] = useState(0)
   const [guestCount, setGuestCount] = useState(0)
   const [memberCount, setMemberCount] = useState(0)
@@ -14,13 +14,8 @@ const FetchCalendarInfoDashboard = () => {
   const [calendarName, setCalendarName] = useState(null)
 
   useEffect(() => {
-    if (!window.ethereum) {
-      console.log('Provider not found.')
-      return // Exit the function early if no provider is found
-    }
-
     async function fetchCalendarName() {
-      const provider = new ethers.providers.JsonRpcProvider('https://testnet.telos.net/evm')
+      const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
       const contract = new ethers.Contract(displayCalendar, CalendarDailyTelos.abi, provider)
       const name = await contract.calendarName()
       console.log(`Connecting to calendar ${name}`)
@@ -35,7 +30,7 @@ const FetchCalendarInfoDashboard = () => {
       return // Exit the function early if no provider is found
     }
     async function fetchStats() {
-      const provider = new ethers.providers.JsonRpcProvider('https://testnet.telos.net/evm')
+      const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
       const contract = new ethers.Contract(displayCalendar, CalendarDailyTelos.abi, provider)
       const ac = await contract.adminCount()
       const gc = await contract.guestCount()
@@ -52,28 +47,27 @@ const FetchCalendarInfoDashboard = () => {
   }, [displayCalendar])
 
   useEffect(() => {
-    if (!window.ethereum) {
-      console.log('Provider not found.')
-      return // Exit the function early if no provider is found
-    }
 
     async function fetchStats() {
-      const provider = new ethers.providers.JsonRpcProvider('https://testnet.telos.net/evm')
+      const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
       const contract = new ethers.Contract(displayCalendar, CalendarDailyTelos.abi, provider)
       const te = await contract.totalEvents()
       setTotalEvents(te.toString())
     }
     fetchStats()
-  }, [displayCalendar])
+  }, [displayCalendar, rpcUrl])
 
   return (
     <div>
-      <VStack w="100%" mb={-2}>
-        <Text w="100%" fontSize={'14px'} as="b" textAlign={'center'} bg="white" p={1} border="1px solid silver" noOfLines={1} overflow="hidden">
-          {calendarName}
-        </Text>
+      <VStack w="100%" color="white" p={2}>
+        
+      <Heading as='h4' size='md'>
 
-        <HStack justify="center" p={1} border="0px solid silver" w="100%">
+      {calendarName}
+      </Heading>
+          
+      
+        <HStack justify="center"  border="0px solid silver" w="100%">
           <Wrap>
             <WrapItem>
               <Tag color="#0700dd" style={{ '--text-color': 'white' }}>
@@ -92,11 +86,16 @@ const FetchCalendarInfoDashboard = () => {
             </WrapItem>
           </Wrap>
         </HStack>
+
+       
+        {/*
         <Center>
           <Tag color="black" style={{ '--text-color': 'white' }}>
             Total Events: {totalEvents}
           </Tag>
         </Center>
+
+        */}
       </VStack>
     </div>
   )

@@ -1,0 +1,59 @@
+diff --git a/node_modules/react-datepicker/dist/react-datepicker.css b/node_modules/react-datepicker/dist/react-datepicker.css
+index f809318..ede9cc9 100644
+--- a/node_modules/react-datepicker/dist/react-datepicker.css
++++ b/node_modules/react-datepicker/dist/react-datepicker.css
+@@ -75,7 +75,7 @@
+   font-size: 0.8rem;
+   background-color: #fff;
+   color: #000;
+-  border: 1px solid #aeaeae;
++  
+   border-radius: 0.3rem;
+   display: inline-block;
+   position: relative;
+@@ -103,6 +103,7 @@
+ }
+ .react-datepicker-popper[data-placement^=bottom] {
+   padding-top: 10px;
++  width:330px;
+ }
+ .react-datepicker-popper[data-placement=bottom-end] .react-datepicker__triangle, .react-datepicker-popper[data-placement=top-end] .react-datepicker__triangle {
+   left: auto;
+@@ -110,6 +111,7 @@
+ }
+ .react-datepicker-popper[data-placement^=top] {
+   padding-bottom: 10px;
++  
+ }
+ .react-datepicker-popper[data-placement^=right] {
+   padding-left: 8px;
+@@ -128,10 +130,10 @@
+ 
+ .react-datepicker__header {
+   text-align: center;
+-  background-color: #f0f0f0;
+-  border-bottom: 1px solid #aeaeae;
++  
++  
+   border-top-left-radius: 0.3rem;
+-  padding: 8px 0;
++  padding: 2px 0;
+   position: relative;
+ }
+ .react-datepicker__header--time {
+@@ -269,6 +271,7 @@
+   clear: both;
+   width: 100%;
+   float: left;
++  padding: 4px;
+   margin: 5px 0 10px 15px;
+   text-align: left;
+ }
+@@ -381,6 +384,7 @@
+ 
+ .react-datepicker__day-names {
+   margin-bottom: -8px;
++  background-color: white;
+ }
+ 
+ .react-datepicker__day-name,

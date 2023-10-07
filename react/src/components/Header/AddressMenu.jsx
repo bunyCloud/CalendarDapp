@@ -3,7 +3,7 @@ import { Menu, MenuButton, MenuList, MenuItem, MenuDivider, Center, HStack, Butt
 import { ChevronDownIcon, CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { formatAddress } from '../../utils/formatMetamask';
 import { Text } from '@chakra-ui/react';
-import { HeaderConnect } from './HeaderConnect';
+import ConnectMetaMask  from './ConnectMetaMask';
 import { AppContext } from '../../AppContext';
 
 const AddressMenu = ({ balance, handleDisconnect}) => {
@@ -34,6 +34,7 @@ const AddressMenu = ({ balance, handleDisconnect}) => {
         borderRadius="md"
         borderWidth="1px"
         bg='white'
+        color='blue'
         borderColor="#6a14fc"
         _hover={{ bg: 'ghostwhite' }}
         _expanded={{ bg: 'white' }}
@@ -55,10 +56,10 @@ const AddressMenu = ({ balance, handleDisconnect}) => {
       )}
       {!account && (
         <>
-        <HeaderConnect />
+        <ConnectMetaMask />
         </>
       )}
-      <MenuList border="1px solid #6a14fc">
+      <MenuList border="1px solid #6a14fc" color='blue'>
       <Center>
       <HStack>
       <Text textAlign="right"  fontSize={'12px'} h="100%" pr={4}>Balance: {balance} TLOS</Text>
@@ -79,7 +80,7 @@ const AddressMenu = ({ balance, handleDisconnect}) => {
         </MenuItem>
         <MenuDivider />
         <MenuItem>
-          <Button size={'sm'} w="100%" colorScheme="twitter" onClick={handleDisconnect}>
+          <Button size={'sm'} w="100%" colorScheme="messenger" onClick={handleDisconnect}>
             Disconnect
           </Button>
         </MenuItem>

@@ -17,7 +17,6 @@ import {
   HStack,
   Center,
   InputGroup,
-  InputRightElement,
   Image,
 } from '@chakra-ui/react'
 import { Buffer } from 'buffer'
@@ -28,8 +27,8 @@ import { ethers } from 'ethers'
 import { CopyIcon } from '@chakra-ui/icons'
 import CalendarDailyTelos from '../../contracts/CalendarDailyTelos.json'
 import { AppContext } from '../../AppContext'
-//import IconEncrypt from '../Crypt/IconEncrypt'
-import { LockOutlined } from '@ant-design/icons'
+import EventTable from '../Calendar/EventTable'
+
 
 const projectId = '2RMVb2CNm5bmXOtwFsrIyAXnNqx'
 const projectSecret = 'b516ce6e2e07f1828d70cf50df87f859'
@@ -39,7 +38,7 @@ const memberRole = '0x829b824e2329e205435d941c9f13baf578548505283d29261236d8e659
 const guestRole = '0xb6a185f76b0ff8a0f9708ffce8e6b63ce2df58f28ad66179fb4e230e98d0a52f'
 const adminRole = '0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775'
 
-const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
+const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear, onCloseDrawer }) => {
   const [file, setFile] = useState()
   const { onCopy } = useClipboard(file)
   const [currentStep, setCurrentStep] = useState(1);
@@ -53,16 +52,13 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
   const [startTime, setStartTime] = useState(new Date())
   const [endTime, setEndTime] = useState(new Date()) // Initialize the endTime state with the current date/time
   const { displayCalendar } = useContext(AppContext)
-
-
-  // Function to bundle all data and pass it to the parent component
+  const [transactionHash, setTransactionHash] = useState(null)
+  const formattedTransactionHash = transactionHash ? `${transactionHash.slice(0, 12)}...${transactionHash.slice(-6)}` : null
 
 
   const handleCopy = () => {
     onCopy()
     setIsCopied(true)
-
-    // Show Toast notification on successful copy
     toast({
       title: 'File data copied!',
       description: `The file data has been copied to the clipboard.`,
@@ -70,8 +66,6 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
       duration: 2000,
       isClosable: true,
     })
-
-    // Reset the "copied" state after a short delay (optional)
     setTimeout(() => {
       setIsCopied(false)
     }, 2000)
@@ -95,12 +89,10 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
   useEffect(() => {
     const uploadFile = async () => {
       if (!file) return
-
       try {
         const added = await client.add(file, {
           progress: (prog) => console.log(`Upload progress: ${prog}`),
         })
-
         const imageUrl = `https://ipfs.io/ipfs/${added.path}`
         setImageUrl(imageUrl)
         console.log('Uploaded image to IPFS:', imageUrl)
@@ -111,6 +103,7 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
 
     uploadFile()
   }, [file, client])
+
 
   const getRoleName = (roleAddress) => {
     switch (roleAddress) {
@@ -130,15 +123,42 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
     return date
   }
 
+  const [eventData, setEventData] = useState({
+    eventID: null,
+    title: '',
+    organizer: '',
+    startTime: '',
+    endTime: '',
+    metadataURI: '',
+    timestamp: '',
+    role: '',
+  });
+
+  // Function to update the state with event data
+  function updateEventData(eventData) {
+    setEventData({
+      eventID: eventData.eventID,
+      title: eventData.title,
+      description: eventData.description,
+      organizer: eventData.organizer,
+      startTime: eventData.startTime,
+      endTime: eventData.endTime,
+      metadataURI: eventData.metadataURI,
+      timestamp: eventData.timestamp,
+      role: eventData.role,
+    });
+    console.log(title)
+  }
+
+
 
   const handleCreateEvent = async () => {
     if (typeof window.ethereum === 'undefined') {
-      alert('MetaMask or a compatible Web3 provider not found');
-      // Request to connect MetaMask or compatible provider
+      console.log('Only MetaMask can save you now!');
       try {
         await window.ethereum.enable();
       } catch (error) {
-        console.error('User denied account access:', error);
+        console.error('User has denied our friendship:', error);
         return;
       }
     }
@@ -157,21 +177,25 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
         const eventData = {
           eventID: ethers.BigNumber.from(event.args[0]).toNumber(),
           title: event.args[1],
-          organizer: event.args[2],
-          startTime: formatTimestamp(event.args[3]),
-          endTime: formatTimestamp(event.args[4]),
-          metadataURI: event.args[5],
+          description: event.args[2],
+          organizer: event.args[3],
+          startTime: formatTimestamp(event.args[4]),
+          endTime: formatTimestamp(event.args[5]),
+          metadataURI: event.args[7],
           timestamp: formatTimestamp(event.args[6]),
-          role: getRoleName(event.args[7]),
+          role: getRoleName(event.args[8]),
         }
         console.log('Event data:', eventData)
+        updateEventData(eventData);
+        setEventData(eventData)
+
       }
         
       console.log('Transaction sent: ', transaction.hash);
       toast({
         id: 'transaction-sent',
-        title: 'Transaction Sent',
-        description: `Transaction hash: ${transaction.hash}`,
+        title: 'Transaction',
+        description: `${transaction.hash}`,
         status: 'info',
         duration: 5000,
         isClosable: true,
@@ -194,7 +218,7 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
       } catch (error) {
             toast({
         id: 'transaction-failure', 
-        title: 'Transaction Failed',
+        title: 'Transaction failed call a supervisor!',
         description: error.message,
         status: 'error',
         duration: 5000,
@@ -205,23 +229,15 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
   };
   
 
-  
-  const [transactionHash, setTransactionHash] = useState(null)
-  const formattedTransactionHash = transactionHash ? `${transactionHash.slice(0, 12)}...${transactionHash.slice(-6)}` : null
-
-  const handleEncrypt = (encryptedData) => {
-    setTitle(encryptedData)
-  }
-
-  const handlePassword = (password) => {
-    setPassword(password)
-  }
+ 
 
   return (
     <VStack spacing={4}>
-      {currentStep === 1 && (
-      <>
-        <Box border="1px solid silver" mt={1} p={2} w="100%" bg="ghostwhite" mb={-2}>
+
+      <Box width={350} p={4}  mb={2}>
+
+<Box border="1px solid silver"  p={4} w="100%"  mb={-2}>
+        {/* Event Title */}
         <FormControl id="title">
           <FormLabel>Event Title</FormLabel>
           <InputGroup>
@@ -235,52 +251,36 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-
-            {/*
-      <InputRightElement width='2.5rem' mt={-1}>
-        <Tooltip label='encrypt text'>
-        <IconEncrypt textToEncrypt={title} onPassword={handlePassword} onEncrypt={handleEncrypt} />
-</Tooltip>
-      </InputRightElement>
- */}
           </InputGroup>
-          {password && (
-            <>
-              <Text>Password:</Text>
-              <Text noOfLines={2} overflow={'auto'}>
-                {password}
-              </Text>
-            </>
-          )}
           <Text fontSize="11px">* Calendar event title & Description</Text>
         </FormControl>
+
+        {/* Event Description */}
         <FormControl id="description">
           <FormLabel>Event Description</FormLabel>
           <InputGroup>
-          <Textarea
-            size="xs"
-            noOfLines={3}
-            bg="white"
-            border="1px solid silver"
-            variant="filled"
+            <Textarea
+              size="xs"
+              noOfLines={3}
+              bg="white"
+              border="1px solid silver"
+              variant="filled"
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-
-
           </InputGroup>
-         
         </FormControl>
-      </Box>
-        </>
-      )}
+      
 
-      {/* Step 2: Start Time and End Time */}
-      {currentStep === 2 && (
-        <>
-        <Center>
-        <VStack>
+      {/* Start Time and End Time */}
+      
+       
+        </Box>
+
+
+
+      <Box border="1px solid silver" p={2} w="100%" >
           <FormControl id="startTime">
             <HStack>
               <FormLabel>Start Time</FormLabel>
@@ -309,15 +309,11 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
               </Box>
             </HStack>
           </FormControl>
-        </VStack>
-      </Center>
-        </>
-      )}
-
-      {/* Step 3: Image Upload */}
-      {currentStep === 3 && (
-        <>
-        <Box border="1px solid silver"  p={2} w="100%" bg="ghostwhite">
+        
+     </Box>
+      {/* Image Upload */}
+      <Box border="1px solid silver" p={2} w="100%" >
+       
         <FormControl id="metadataURI">
           <FormLabel>Image (IPFS)</FormLabel>
           <Input size='xs'  p={2} mb={6} pb={6}   variant='flushed' type="file" onChange={handleFileChange} />
@@ -336,13 +332,9 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
           )}
         </FormControl>
       </Box>
-        </>
-      )}
 
-      {/* Step 4: Invitees */}
-      {currentStep === 4 && (
-        <>
-        <Box border="1px solid silver" mt={-2} p={2} w="100%" bg="ghostwhite">
+      {/* Invitees */}
+      <Box border="1px solid silver" mt={-2} p={2} w="100%" >
         <FormControl id="invitees">
           <FormLabel>Invitees</FormLabel>
           <Text fontSize={'sm'}>*Separate addresses with comma.</Text>
@@ -357,62 +349,42 @@ const PublicEventForm = ({ selectedDay, selectedMonth, selectedYear }) => {
           />
         </FormControl>
       </Box>
-        </>
-      )}
 
-      {/* Step 5: Review & Submit */}
-      {currentStep === 5 && (
-        <Box w={300} overflow={'auto'}>
-          {/* Display all selected data for review */}
-          <Text>Title: {title}</Text>
-          <Text>Description: {description}</Text>
-          <Text>Start Time: {startTime.toString()}</Text>
-          <Text>End Time: {endTime.toString()}</Text>
-          <Text>Invitees: {invitees}</Text>
-          <Center mt={2} p={2}>
+      {/*     <Text>Title: {title}</Text>
+        <Text>Description: {description}</Text>
+        <Text>Start Time: {startTime.toString()}</Text>
+        <Text>End Time: {endTime.toString()}</Text>
+        <Text>Invitees: {invitees}</Text>
+        <Center mt={2} p={2}>
           <Text> <Image src={imageUrl} w={200} /></Text>
-          </Center>
+        </Center> */}
+      <Box w={'auto'} overflow={'auto'}>
+   
 
-          <Button w="100%" size={'sm'} colorScheme="messenger" onClick={handleCreateEvent}>
-        Create Public Event
-      </Button>
-        </Box>
-      )}
+        <Button w="100%" minWidth={150} size={'sm'} colorScheme="messenger" onClick={handleCreateEvent}>
+          Create Event
+        </Button>
+      </Box>
 
-      {currentStep === 6 && (
-        <>
+      {transactionHash && (
+        <Box p={2} w={300}>
         {transactionHash && (
         <Box p={2} w={300}>
           Transaction hash:{' '}
           <Text as="a" color="blue.500" href={`https://testnet.teloscan.io/tx/${transactionHash}`} target="_blank" rel="noopener noreferrer">
             {formattedTransactionHash}
           </Text>
+          <EventTable eventData={eventData} />
+
         </Box>
       )}
-        </>
-      )}
 
-      {/* Navigation Buttons */}
-      {currentStep > 1 && (
-        <Button size={'sm'} onClick={() => setCurrentStep(currentStep - 1)}>
-          Previous
-        </Button>
+        </Box>
       )}
-    <HStack>
-    {currentStep < 5 ? (
-        <Button size={'sm'} onClick={() => setCurrentStep(currentStep + 1)}>
-          Next
-        </Button>
-      ) : (
-        <Button size={'sm'} onClick={handleCreateEvent}>
-          Submit
-        </Button>
-      )}
-    </HStack>
+      </Box>
     </VStack>
-
-
-  )
+      
+        )
 }
 
 export default PublicEventForm

@@ -1,88 +1,39 @@
 import React from 'react'
-import { AutoCenter, Popup } from 'antd-mobile'
-import { Text, Box, Avatar, HStack, Wrap, WrapItem, Link } from '@chakra-ui/react'
-import { Layout, Space } from 'antd';
-import { formatAddress } from '../../utils/formatMetamask';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Popup } from 'antd-mobile'
+import { Text, Box, Avatar, VStack, HStack } from '@chakra-ui/react'
 
-const { Header, Footer, Content } = Layout;
-
-const headerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  height: 33,
-  paddingInline: 50,
-  lineHeight: '33px',
-  backgroundColor: '#7dbcea',
-};
-
-const contentStyle = {
-  textAlign: 'left',
-  minHeight: 60,
-  height: '100%',
-  padding:'6px',
-  //lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#108ee9',
-};
-
-const footerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  height: '33px',
-  backgroundColor: '#7dbcea',
-};
-
-
-const EventDisplayDrawer = ({calendarAddress,  selectedEvent, isVisible, onClose }) => {
+const EventDisplayDrawer = ({ calendarAddress, selectedEvent, isVisible, onClose }) => {
   return (
     <>
       {isVisible && (
-        <Popup  bodyStyle={{backgroundColor: '#7dbcea', height: 'auto', padding: '2px', overflow: 'hidden' }} visible={isVisible} onMaskClick={onClose}>
+        <Popup bodyStyle={{ backgroundColor: '#103e8e', color:'white', height: 'auto', padding: '20px', overflow: 'hidden' }} visible={isVisible} onMaskClick={onClose}>
           <>
-            <AutoCenter>
-              <Space direction="vertical" style={{ width: '100%' }} size={[0, 48]}>
-                <Layout>
-                  <Header style={headerStyle}>
-                    <AutoCenter>
-                    <Wrap>
-                    <WrapItem>
-                    <HStack>
-                      <Avatar size="xs" name={selectedEvent.title} src={selectedEvent.metadataURI} />{' '}
-                      <Text as="b" fontSize={'16px'} borderBottom="1px solid silver">
-                        {selectedEvent.title}
+            <VStack>
+              <Avatar size="xl" border={'3px solid white'} name={selectedEvent.title} src={selectedEvent.metadataURI} />{' '}
+              {selectedEvent && (
+                <>
+                  <Box w={'auto'} h="auto" p={4}>
+                    <Text as="b" fontSize={'18px'} borderBottom="1px solid silver">
+                      {selectedEvent.title}
+                    </Text>
+                    <Text fontSize="12px">Organizer: {selectedEvent.organizer}</Text>
+
+                    <Text fontSize={'12px'} noOfLines={4}>
+                      {selectedEvent.description}
+                    </Text>
+
+                    <HStack p={2}>
+                      <Text fontSize="12px" noOfLines={2}>
+                        Start: {selectedEvent.start.toString()}
+                      </Text>
+                      <Text fontSize="12px" noOfLines={2}>
+                        Ends: {selectedEvent.end.toString()}
                       </Text>
                     </HStack>
-                    </WrapItem>
-                    
-                    </Wrap>
-                    </AutoCenter>
-                  </Header>
-                  <Content style={contentStyle}>
-                    <>
-                      {selectedEvent && (
-                        <>
-                          <Box w={'auto'} h='auto'>
-                          <Text>Organizer: {selectedEvent.organizer}</Text>
-                            <Text noOfLines={2}>Start: {selectedEvent.start.toString()}</Text>
-                            <Text noOfLines={2}>Ends: {selectedEvent.end.toString()}</Text>
-                            {/*
-                  <Image w={'auto'} src={selectedEvent.metadataURI} />
-    */}
-                          </Box>
-                        </>
-                      )}
-                    </>
-                  </Content>
-                  <Footer style={footerStyle}>
-                  <Link href={`/event/${calendarAddress}/${selectedEvent.eventId}`} isExternal>
-  View Event Page <ExternalLinkIcon mx='2px' />
-</Link>
-
-                  </Footer>
-                </Layout>
-              </Space>
-            </AutoCenter>
+                  </Box>
+                </>
+              )}
+            </VStack>
           </>
         </Popup>
       )}
