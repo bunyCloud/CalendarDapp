@@ -1,5 +1,5 @@
 import { Card } from 'antd'
-import { Button, HStack, VStack, Input } from '@chakra-ui/react'
+import { Button, HStack,Link, VStack, Input } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react'
 import CalendarFactory from '../../contracts/CalendarFactory.json'
 import { ethers } from 'ethers'
@@ -9,7 +9,7 @@ import { Button as CarbonButton } from '@carbon/react'
 
 const CreateCalendarForm = () => {
   const toast = useToast()
-  const { account } = useContext(AppContext)
+  const { account, setDisplayCalendar } = useContext(AppContext)
   const [inputName, setInputName] = useState('')
   const [current, setCurrent] = useState(0)
   const [deployLog, setDeployLog] = useState(null)
@@ -20,6 +20,13 @@ const CreateCalendarForm = () => {
 
   const handleCalendarName = (name) => {
     setInputName(name)
+  }
+
+  const handleDisplayCalendar = (address) => {
+
+    setDisplayCalendar(address)
+    console.log('Changing active calendar')
+
   }
 
   const createCalendar = async () => {
@@ -69,13 +76,13 @@ const CreateCalendarForm = () => {
       content: (
         <>
           <VStack>
-            <HStack gap="auto">
+            <HStack gap="auto" m={1}>
               <Input
                 size={'sm'}
                 aria-label="Create"
-                bg="white"
+                
                 onKeyDown={handleInputKeyPress}
-                border="1px solid silver"
+               // border="1px solid silver"
                 placeholder="Enter a Name"
                 value={inputName}
                 onChange={(e) => handleCalendarName(e.target.value)}
@@ -94,15 +101,22 @@ const CreateCalendarForm = () => {
       title: 'Transaction Results',
       content: (
         <>
-          <HStack>
+          <VStack gap='auto' >
             {deployLog && (
               <>
-                <Button variant={'link'} size={'sm'} href={deployLog} target="_blank">
+              
+                <Button p='8px'  target="_blank">
+                  Load Calendar
+                </Button>
+              
+              <Link href={deployLog} target='_blank'>
+                <Button variant={'link'}   size={'xs'} target="_blank">
                   View Transaction
                 </Button>
+                </Link>
               </>
             )}
-          </HStack>
+          </VStack>
         </>
       ),
     },
@@ -111,9 +125,11 @@ const CreateCalendarForm = () => {
   return (
     <>
       <>
-        <VStack bg="ghostwhite" border="1px solid silver">
+        <VStack  >
           <div>
-            <Card bodyStyle={{ padding: '0px', maxWidth: '360px' }} headStyle={{ fontSize: '12px' }}>
+            <Card 
+            style={{borderRadius:'0px', }}
+            bodyStyle={{ padding: '0px', borderRadius:'0px',width: '250px' }} headStyle={{ fontSize: '12px' }}>
               <>{steps[current].content && <>{steps[current].content}</>}</>
             </Card>
           </div>

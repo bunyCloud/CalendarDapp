@@ -14,7 +14,7 @@ const contentStyle = {
   width: '100%',
   
   borderTop: '0.5px solid silver',
-  borderBottom: '0.5px solid silver',
+  //borderBottom: '0.5px solid silver',
   //minHeight: '250px',
   //marginBottom: '15px',
   //color: 'white',
@@ -65,14 +65,14 @@ const FetchAllEvents = () => {
   return (
     <Space direction="vertical" style={contentStyle}>
       <Center>
-        <VStack spacing={2} w="100%">
+        <VStack  spacing={2} w="100%">
           {isLoading && (
             <>
-              <Text color='white'>Loading Events....</Text>
+              <Text mt={2} color='white'>Loading Events....</Text>
             </>
           )}
           {!isLoading && !currentEvent && (
-        <Text color='white'>No events found...</Text>
+        <Text color='white' mt={2}>No events found...</Text>
       )}
           {currentEvent && !isLoading && (
             <Wrap spacing={2} justify="center" align="center" color="white" >

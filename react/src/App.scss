@@ -4,6 +4,9 @@
 @use './content/LandingPage/landing-page';
 @use 'react-big-calendar/lib/sass/styles';
 
+
+
+
 .app .cds--content {
   margin-top: '3rem';
 }
@@ -29,3 +32,6 @@
   margin-top: 10px; /* Add margin to separate text from buttons */
 }
 
+.InputStyles {
+  background-color: red;
+}

@@ -7,7 +7,6 @@ import AdminDashboard from '../../components/Calendar/AdminDashboard'
 import AddressGrid from '../../components/Calendar/AddressGrid'
 import { Calendar } from '@carbon/icons-react'
 import CreateEventModal from '../../components/Modals/CreateEventModal'
-import { IconButton } from '@chakra-ui/react'
 
 export default function LandingPage() {
   const { account, chainId, displayCalendar } = useContext(AppContext)
@@ -39,16 +38,18 @@ export default function LandingPage() {
                 <Column lg={16} md={8} sm={4} className="landing-page__tab-content">
                   Event scheduling form for the actively selected community.
                   <CreateEventModal />
+                  
                 </Column>
               </Grid>
             </TabPanel>
             <TabPanel>
               <Grid className="tabs-group-content">
-                <Column lg={16} md={8} sm={4} className="landing-page__tab-content">
+                <Column lg={16} md={8} sm={4} className="landing-page__tab-content" style={{padding:'8px', border:'1px solid ThreeDFace'}}>
                   Community information such as member details and guest access can be found on this page.
                   <div style={{ width: '100%' }}>
                     <FetchCalendarInfo />
                   </div>
+                  <AddressGrid calendarName={calendarName} />
                 </Column>
               </Grid>
             </TabPanel>
@@ -63,7 +64,7 @@ export default function LandingPage() {
             </TabPanel>
           </TabPanels>
         </Tabs>
-        <AddressGrid calendarName={calendarName} />
+        
       </Column>
     </Grid>
   )

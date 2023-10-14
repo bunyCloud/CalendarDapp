@@ -23,7 +23,7 @@ const projectId = '2RMVb2CNm5bmXOtwFsrIyAXnNqx'
 const projectSecret = 'b516ce6e2e07f1828d70cf50df87f859'
 const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
 
-const CreateEventModal = ({ selectedDay, selectedMonth, selectedYear }) => {
+const CreateEventModal = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { calendarName } = useContext(AppContext)
   const [file, setFile] = useState()
@@ -295,25 +295,20 @@ const CreateEventModal = ({ selectedDay, selectedMonth, selectedYear }) => {
         //modalLabel={calendarName}
 
         onClose={() => setIsOpen(false)}>
-        <Form aria-label="create event form" style={{ padding: '8px', marginTop:'-12px' }}>
-          <div style={{ display: 'flex', marginBottom:'8px' }}>
-            <div style={{ display: 'flex', padding:'2px' }}>
-              <FormControl id="startTime">
-                <FormLabel>Start</FormLabel>
-                <DatePicker selected={startTime} onChange={(date) => setStartTime(date)} showTimeSelect dateFormat="Pp" />
-              </FormControl>
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                padding:'2px',
-              }}>
-              <FormControl id="endTime">
-                <FormLabel>End</FormLabel>
+        <Form aria-label="create event form" style={{ padding: '18px', marginTop: '-12px' }}>
+          <div
+            style={{
+              display: 'flex',
+              padding: '6px',
+            }}>
+            <FormLabel style={{marginRight:'8px'}}>Start Time</FormLabel>
+            <DatePicker selected={endTime} onChange={(date) => setEndTime(date)} showTimeSelect dateFormat="Pp" />
+          </div>
 
-                <DatePicker selected={endTime} onChange={(date) => setEndTime(date)} showTimeSelect dateFormat="Pp" />
-              </FormControl>
-            </div>
+          <div  style={{ display: 'flex', padding: '6px' }}>
+          <FormLabel style={{marginRight:'13px'}}>End Time</FormLabel>
+
+            <DatePicker selected={startTime} onChange={(date) => setStartTime(date)} showTimeSelect dateFormat="Pp" />
           </div>
 
           <div

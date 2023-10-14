@@ -1,2 +1,11 @@
 // Bring in all the styles for Carbon
 @use '@carbon/react';
+@use '../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css';
+
+
+.react-datepicker__input-container input {
+    width: 100%;
+    background-color: white;;
+    border-bottom: 1px solid black;
+    padding:8px;
+ }
