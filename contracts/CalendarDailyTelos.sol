@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import "@openzeppelin/contracts/access/AccessControl.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/audit/2023-06/contracts/access/AccessControl.sol";
 import "./CalendarFactory.sol";
 
 contract CalendarDailyTelos is AccessControl {
@@ -81,9 +81,9 @@ contract CalendarDailyTelos is AccessControl {
         calendarName = _calendarName;
         calendarOwner = _owner;
         _factory = CalendarFactory(msg.sender);
-        _setupRole(DEFAULT_ADMIN_ROLE, calendarOwner);
-        _setupRole(ADMIN_ROLE, calendarOwner);
-        _setupRole(ADMIN_ROLE, address(this));
+        grantRole(DEFAULT_ADMIN_ROLE, calendarOwner);
+        grantRole(ADMIN_ROLE, calendarOwner);
+        grantRole(ADMIN_ROLE, address(this));
         admins[calendarOwner] = Admin({
             addr: calendarOwner,
             eventIds: new uint256[](0)
@@ -162,18 +162,7 @@ contract CalendarDailyTelos is AccessControl {
         }
     }
 
-    function addMember(address memberAddress) public onlyAdmin {
-        require(
-            !hasRole(MEMBER_ROLE, memberAddress),
-            "Address is already a member"
-        );
-
-        grantRole(MEMBER_ROLE, memberAddress); // Use grantRole for MEMBER_ROLE
-
-        if (!hasRole(GUEST_ROLE, memberAddress)) {
-            grantRole(GUEST_ROLE, memberAddress); // Use grantRole for GUEST_ROLE
-        }
-    }
+   
 
     function userExistsInArray(address userAddress)
         private
@@ -215,18 +204,13 @@ contract CalendarDailyTelos is AccessControl {
     require(
         !hasRole(GUEST_ROLE, guestAddress),
         "Address is already a guest"
-    ); // Check if not already a guest
-
-    // Granting the GUEST_ROLE to the caller without calling grantRole
-    _setupRole(GUEST_ROLE, guestAddress);
-
-    // The rest remains the same
+    ); 
+        grantRole(GUEST_ROLE, guestAddress);
     guests[guestAddress] = Guest({
         addr: guestAddress,
         eventIds: new uint256[](0)
     });
     guestCount++;
-
     if (!userExistsInArray(guestAddress)) {
         users.push(guestAddress);
     }
